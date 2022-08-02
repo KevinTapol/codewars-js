@@ -4,7 +4,11 @@
 //           * [-52, 56, 30, 29, -54, 0, -110] -> min = -110, max = 56
 //           * [42, 54, 65, 87, 0]             -> min = 0, max = 87
 //           * [5]                             -> min = 5, max = 5
-// Psuedo code: use object Math and methods .min() and .max() iterate through the array with .forEach() to compare the values
+// Psuedo code: set variable to first item in the list 
+//              loop through the array comparing each value
+//              for min integer if the loop index value is less than the set variable value, set the current loop index value to the set variable value
+//              for max integer if the loop index value is more than the set variable value, set the current loop index value to the set variable value
+//              return the variable
 
 //my answer
 function min(list){
