@@ -8,7 +8,7 @@
         //"ACSKLDFJSGSKLDFJSKLDFJ" -> True
 // Psuedo code: take input object string and compare to .toUppercase() in boolean if caps return true else false
 
-//myanswer
+// my answer
 String.prototype.isUpperCase = function(){
     if(this.toString() == this.toUpperCase()){
       return true;
@@ -24,3 +24,8 @@ String.prototype.isUpperCase = function() {
 
 //best practices
 String.prototype.isUpperCase=function() {return this==this.toUpperCase()}
+
+//search params
+String.prototype.isUpperCase = function () {
+    return !/[a-z]/.test(this);
+  };
