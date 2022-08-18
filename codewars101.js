@@ -1,7 +1,7 @@
 // Parameters or Edge cases: there are 10 matches in the championship
 //                           0 <= x <= 4
 //                           0 <= y <= 4
-// Return:
+// Return: total points earned
 // Examples: ["3:1", "2:2", "0:1", ...]
 //           if x > y: 3 points
 //           if x < y: 0 point
