@@ -10,7 +10,7 @@
 //                Test.assertSimilar(createArray(5),[1,2,3,4,5]);
 //              });
 //            });
-// Psuedo code:  If I was to replicate this from scratch, I would Array.from() the first param being {length:input} and the second parameter being what i do to each element given the the new shallow array element, index where each element would be the value index +1 till I reach the length input inclusively.
+// Psuedo code:  If I was to replicate this from scratch, I would Array.from() the first param being {length:input} and the second parameter being what I do to each element given the the new shallow array element, index where each element would be the value index +1 till I reach the length input inclusively.
 
 // Debug infinite loop
 function createArray(number){
@@ -56,7 +56,7 @@ function createArray(number){
 // fill(value, start, end)  fill(default 0, default arr.length, default value)
 function createArray(number){
     return Array(number).fill(1,0).map((x,i) => x + i)
-  }
+}
 
 // lol funny using arrow fn truthy ternary else return empty array
 createArray=甫=排=>排?[...甫(排-1),排]:[]
