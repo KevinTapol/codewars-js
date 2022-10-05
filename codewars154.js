@@ -7,18 +7,18 @@
 //                Test.assertEquals(checkAlive(0), false)
 //              });
 //            });
-// Psuedo Code: Debug code
-//              
-
-// code to debug
-function checkAlive (health) {
-    if () {
-      health < 0
-      return false
-    } else () {
-      return true
-    }
-}
+// Psuedo Code: Debug code           
+//               code to debug
+//              function checkAlive (health) {
+//                  if () {
+//                    health < 0
+//                    return false
+//                  } else () {
+//                    return true
+//                  }
+//              }
+//              take the conditional and add = then remove it from the curly brackets and into the conditional parentheses
+//              remove the conditional parentheses from the else statement
 
 // my answer before refactor
 function checkAlive (health) {
@@ -29,7 +29,7 @@ function checkAlive (health) {
     }
 }
 
-// my answer refactored
+// my answer refactored arrow function ternary
 const checkAlive = (health) => health > 0 ? true : false
 
 // best practices and most clever
