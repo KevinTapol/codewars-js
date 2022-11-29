@@ -3,7 +3,7 @@
 // Parameters or Edge Cases:
 //      input will be a string of integers and can be as large as 1000 digits
 // Return:
-//      the largest consecutive five digit integer from the string
+//      the largest consecutive five digit integer from the intput string interger
 // Examples:
 //      describe("Basic tests", () => {
 //          it("Testing for fixed tests", () => {
