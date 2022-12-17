@@ -15,6 +15,7 @@
        <a target="_blank" href="https://github.com/KevinTapol/codewars-python" >
             <img height="30" src="https://img.shields.io/static/v1?label=&message=CLICK_HERE_FOR_PY_GITHUB_REPO&color=3388ff&style=plastic&logo=&logo-color=white"/>
         </a>
+        </br>
       </a> <!--Click website icon link to open a new window to My Codewars Profile changed hex color=cdf998 to 3388ff  deleted label=| deleted logo=wordpress-->
       <a target="_blank" href="https://www.codewars.com/users/KevinTap" >
         <img height="30" src="https://img.shields.io/static/v1?label=&message=CLICK_HERE_FOR_CODEWARS_PROFILE&color=3388ff&style=plastic&logo=&logo-color=white"/>
