@@ -84,3 +84,28 @@ function gps(s, x) {
 const gps = (s,x) => x.length <= 1 ? 0 : Math.max(...x.map((e, i, x ) => Math.floor(((x[i+1] - x[i])*3600)/s)).slice(0, -1))
 
 console.log(gps(15, [0.0, 0.19, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.25])) // 74
+
+// voted best practice but strongly disagree 
+// arrow fn should not be best practice this is similar to my refactored for loop answer
+const gps = (s, x) => {
+
+    if (x.length<=1) {
+      return 0;
+    }
+    
+    let output = [];
+    for (let i = 0; i < x.length-1; i++) { 
+      output.push((x[i+1]-x[i])*3600/s);
+    }
+    
+    return Math.max(...output);
+  }
+
+// most clever
+// using x.slice(1) to remove the first element instead of the last then use .reduce(total, currentVal, currentIndex, array)
+const gps = (s, x) => Math.floor(3600 * x.slice(1).reduce((m, d, i) => Math.max(m, d - x[i]), 0) / s);
+
+// similar to my array method answer but slicing to remove first element then using .map(element, index) to return the max val or 0
+function gps(s, x) {
+	return Math.max(...x.slice(1).map((a, i) => (a - x[i]) / s * 3600)) | 0
+}
