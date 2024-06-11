@@ -1,5 +1,13 @@
 /*
 Sum of Odd Cubed Numbers
+    My Suggested Description
+    Description Suggestion
+Inputs will be an array. Elements of the array can be strings and/or integers. The integers can be negative or positive.  
+  
+If the input array contains anything other than integers, then return undefined.    
+Iterate through the array cubing each element meaning e<sup>3</sup> or `e*e*e`.     
+Grab only the odd cubed elements and return the sum.  
+  
 
 Parameters or Edge Cases:
     inputs will be an array of integers and strings that can be positive or negative
