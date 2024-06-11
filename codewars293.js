@@ -3,18 +3,19 @@ Sum of Odd Cubed Numbers
 
 Parameters or Edge Cases:
     inputs will be an array of integers and strings that can be positive or negative
-    will string integers count as integers?
+    integers representing strings will not be considered integers
 
 Return:
-    sum of the odd numbers within an array, after cubing the initial integers  return undefined if any of the values aren't numbers
+    undefined if anything other than integers are in the array. Else cube each element and return the sum of only the odd integers.
 Examples:
     [1, 2, 3, 4] --> 28
     [-3,-2,2,3] --> 0
     ["a",12,9,"z",42] --> undefined
+
 Pseudocode:
-    iterate through the input array taking only integers and cube them
-    return the sum of only the odd integers of the new array
-    if there are no odd integers then return undefined
+    if any of the elements are not integers then return undefined 
+    else iterate through the input array taking only integers and cube them
+    grab only the cubed integers that are odd and return their sum
 */
 
 // My Answer
