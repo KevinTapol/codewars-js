@@ -25,11 +25,19 @@ Pseudocode:
 // My Answer
 function smaller(nums) {
     let result = []
-    for(let i = 0; i <= nums.length; i++){
+    for(let i = 0; i < nums.length; i++){
         let count = 0
-        if(nums[i]){
-            count +=1
-        }result.push(count)
+        let arr = nums.slice(i)
+        for(let j = 1; j <= arr.length; j++){
+            if (arr[0] > arr[j]){
+              count += 1  
+            }
+        }
+        result.push(count)
     }
     return result
 }
+
+// My Answer Refactored .reduce()
+console.log(smaller([5, 4, 3, 2, 1])) // [4, 3, 2, 1, 0]
+
