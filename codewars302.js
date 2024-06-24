@@ -28,6 +28,7 @@ function smaller(nums) {
     for(let i = 0; i < nums.length; i++){
         let count = 0
         let arr = nums.slice(i)
+        // put .filter here
         for(let j = 1; j <= arr.length; j++){
             if (arr[0] > arr[j]){
               count += 1  
@@ -41,3 +42,7 @@ function smaller(nums) {
 // My Answer Refactored .reduce()
 console.log(smaller([5, 4, 3, 2, 1])) // [4, 3, 2, 1, 0]
 
+
+// Best Practices and Most Clever
+// arrow fn using .map() with a nested .slice().filter().length
+const smaller = nums => nums.map((x, i) => nums.slice(i).filter(y => x > y).length);
