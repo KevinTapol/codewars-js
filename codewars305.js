@@ -15,15 +15,18 @@ Examples:
     { a: 10, b: 20, c: 30 }, { a: 3, c: 6, d: 3 }, { a: 5, d: 11, e: 8 } -->  { a: 18, b: 20, c: 36, d: 14, e: 8 }
 Pseudocode:
     declare an empty object named result
-    iterate through the input objects and set an array of keys
+    iterate through the input objects and if the object key already exists then add the values if the key does not exist then add the new pair key value
+    return the new object of added values
+    
 */ 
 
 // My Answer
  function combine(...inputs) {
     let result = {}
-    let lastKeysObj = Object.keys(inputs[inputs.length -1])
-    let keys = Object.keys(inputs)
-    return keys
+    // let lastKeysObj = Object.keys(inputs[inputs.length -1])
+    let arrOfKeys = Object.keys(inputs)
+    let firstObj = arrOfKeys[arrOfKeys.length -1]
+    return inputs
 }
 
 console.log(combine({ a: 10, b: 20, c: 30 }, { a: 3, c: 6, d: 3 }))
