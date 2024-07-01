@@ -21,8 +21,23 @@ Pseudocode:
 */ 
 
 // My Answer
+//  function combine(...inputs) {
+//     let result = {}
+//     // let lastKeysObj = Object.keys(inputs[inputs.length -1])
+//     let arrOfKeys = Object.keys(inputs)
+//     let firstObj = arrOfKeys[arrOfKeys.length -1]
+//     return inputs
+// }
  function combine(...inputs) {
     let result = {}
+    for(let i = 0; i < inputs.length; i++){
+        console.log(inputs[i])
+        // if(result does not contain the key){
+        //     add the key value pair to result 
+        // }else {
+        //     add the value to the currently existing value
+        // }
+    }
     // let lastKeysObj = Object.keys(inputs[inputs.length -1])
     let arrOfKeys = Object.keys(inputs)
     let firstObj = arrOfKeys[arrOfKeys.length -1]
