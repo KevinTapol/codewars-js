@@ -32,6 +32,7 @@ Pseudocode:
     let result = {}
     for(let i = 0; i < inputs.length; i++){
         console.log(inputs[i])
+        // newObject = Object.assign(objectA, objectB)
         // if(result does not contain the key){
         //     add the key value pair to result 
         // }else {
