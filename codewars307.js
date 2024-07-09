@@ -27,15 +27,26 @@ Pseudocode:
 // current problem is calling the specific key of boss on the object meet to get the value of boss without using meet.laura because meet.boss returns undefined
 function outed(meet, boss){
     let b = Object.entries(meet).filter((e) => e[0] === boss)[0][1]
-    // let sum = 0
-    // let val = Object.values(meet).reduce((acc, c) => acc + c, 0)
-    // sum = (val + meet.boss)/ val.length
-    // console.log(sum)
-    // if (sum <= 5){
-    //     return 'Get Out Now!'
-    // } else {
-    //     return 'Nice Work Champ!'
-    // }
-    return b
+    let val = Object.values(meet)
+    let res = (val.reduce((acc, c) => acc + c, 0) + b)/val.length
+    if (res <= 5){
+        return 'Get Out Now!'
+    } else {
+        return 'Nice Work Champ!'
+    }
 }
-console.log(outed({'tim':0, 'jim':2, 'randy':0, 'sandy':7, 'andy':0, 'katie':5, 'laura':1, 'saajid':2, 'alex':3, 'john':2, 'mr':0}, 'laura')) // 'Get Out Now!'
+
+// My Answer Refactored
+function outed(meet, boss){
+    let b = Object.entries(meet).filter((e) => e[0] === boss)[0][1]
+    let val = Object.values(meet)
+    let res = (val.reduce((acc, c) => acc + c, 0) + b)/val.length
+    return res <= 5 ? 'Get Out Now!' : 'Nice Work Champ!'
+}
+
+// My Answer no variables not dry
+function outed(meet, boss){ 
+    return (Object.values(meet).reduce((acc, c) => acc + c, 0) + Object.entries(meet).filter((e) => e[0] === boss)[0][1])/Object.values(meet).length <= 5 ? 'Get Out Now!' : 'Nice Work Champ!'
+}
+// console.log(outed({'tim':0, 'jim':2, 'randy':0, 'sandy':7, 'andy':0, 'katie':5, 'laura':1, 'saajid':2, 'alex':3, 'john':2, 'mr':0}, 'laura')) // 'Get Out Now!'
+console.log(outed({"tim":3,"jim":9,"randy":4,"sandy":4,"andy":9,"katie":4,"laura":6,"saajid":7,"alex":6,"john":0,"mr":6}, "sandy")) // 'Nice Work Champ!'
