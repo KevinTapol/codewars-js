@@ -48,5 +48,44 @@ function outed(meet, boss){
 function outed(meet, boss){ 
     return (Object.values(meet).reduce((acc, c) => acc + c, 0) + Object.entries(meet).filter((e) => e[0] === boss)[0][1])/Object.values(meet).length <= 5 ? 'Get Out Now!' : 'Nice Work Champ!'
 }
-// console.log(outed({'tim':0, 'jim':2, 'randy':0, 'sandy':7, 'andy':0, 'katie':5, 'laura':1, 'saajid':2, 'alex':3, 'john':2, 'mr':0}, 'laura')) // 'Get Out Now!'
+console.log(outed({'tim':0, 'jim':2, 'randy':0, 'sandy':7, 'andy':0, 'katie':5, 'laura':1, 'saajid':2, 'alex':3, 'john':2, 'mr':0}, 'laura')) // 'Get Out Now!'
 console.log(outed({"tim":3,"jim":9,"randy":4,"sandy":4,"andy":9,"katie":4,"laura":6,"saajid":7,"alex":6,"john":0,"mr":6}, "sandy")) // 'Nice Work Champ!'
+
+// Best Practices and Most Clever
+// Similar to my answer but using an array of keys on the object instead of an array of values. This solves the problem of meet.boss returning undefined.
+function outed(meet, boss) {
+    let names = Object.keys(meet)
+    let score = names.reduce((s,v) => s + meet[v], 0) + meet[boss]
+    return score / names.length > 5 ? 'Nice Work Champ!' : 'Get Out Now!'
+  }
+
+// For Loop using index in meet object with a global count
+function outed(meet, boss){
+    var sum=0;
+    var count=0;
+    for (var key in meet)
+      if (key!=boss)
+      {
+        sum+=meet[key];
+        count++;
+      }  
+      else
+      {
+        sum+=meet[key]*2;
+        count++;
+      }
+    return sum/count<=5?'Get Out Now!':'Nice Work Champ!';
+  }
+
+// clever declaring another param arr as default for values of the meet object
+const outed = (meet, boss, arr = Object.values(meet)) => 
+    arr.reduce((sum, rating) => sum + rating, meet[boss]) / arr.length > 5 ? 'Nice Work Champ!' : 'Get Out Now!';
+
+// Clever checking if the key is equal to the boss then return the value of key twice
+function outed(meet, boss){
+    const team = Object.keys(meet);
+    const happiness = team.reduce(
+      (avg, name) => meet[name] * (name === boss ? 2 : 1) + avg
+    , 0) / team.length;
+    return happiness <= 5 ? 'Get Out Now!' : 'Nice Work Champ!';
+  }
