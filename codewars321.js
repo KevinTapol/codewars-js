@@ -26,12 +26,35 @@ xxxxxxxxxxxxxxxxxxxxxxxxx
 =====================T
 xxxxxxxxxxxxxxxxxxxxxxx
 =======T
+
+'o' if i < done.length else 'x' for i in range(lamps.length)
 */
+
+
+// My Answer Brute Force For Loop
+function flyBy(lamps, drone){
+    let result = ''
+    for(let i = 0; i < lamps.length; i++){
+        if(i < drone.length){
+            result += 'o'
+        } else {
+            result += 'x'
+        }
+    } return result
+}
+
+// My Answer brute force for loop refactored conditional to ternary
+function flyBy(lamps, drone){
+    let result = ''
+    for(let i = 0; i < lamps.length; i++){
+        i < drone.length ? result += 'o' : result += 'x'
+    } return result
+}
 
 // My Answer
 function flyBy(lamps, drone){
-    let result = 'o'.repeat(drone.length) + 'x'.repeat(lamps.length - drone.length)
-    return result 
+    // let result = 'o'.repeat(drone.length) + 'x'.repeat(lamps.length - drone.length)
+    // return 'result '
 }
 
 console.log(flyBy('xxxxxx', '====T')) // 'ooooox'
