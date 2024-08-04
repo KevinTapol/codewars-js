@@ -26,14 +26,42 @@ Pseudocode
 
 // My Answer
 function strCount(obj){
-    console.log(obj)
     return Object.values(obj).filter((e) => typeof(e) === 'string' || (Array.isArray(e) && e.flat(Infinity).filter((el) => typeof(el) === 'string'))).length
 }
 
+// console.log(strCount({
+//     first: "1",
+//     second: "2",
+//     third: false,
+//     fourth: ["anytime",2,3,4],
+//     fifth:  null
+//   })) // 3
+
 console.log(strCount({
-    first: "1",
-    second: "2",
+    first: '1',
+    second: '2',
     third: false,
-    fourth: ["anytime",2,3,4],
-    fifth:  null
-  })) // 3
+    fourth: [ 'anytime', 2, 3, 4 ],
+    fifth: null,
+    sixth: undefined,
+    seventh: {}
+  }))
+
+  function strCount(obj){
+    let result = Object.values(obj).flat().filter((e)=> typeof(e) === 'string')
+    console.log(obj)
+    console.log(' ')
+    if(typeof(obj) != 'object'){
+        console.log('input is an object')
+    }else {
+    return result.length
+    }
+}
+
+function strCount(obj){
+    if(typeof(obj) === 'object'){
+        return Object.values(obj).flat().filter((e) => typeof(e) === 'string').length
+    }if (Array.isArray(obj)){
+        console.log('input is an array')
+    }
+}
