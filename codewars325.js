@@ -65,3 +65,4 @@ function strCount(obj){
         console.log('input is an array')
     }
 }
+// ideas... take in all the object values. if arrays then flatten and concat them into a single array. if arrays from the start then set up conditionals for the input being an array instead of an object. global variable count might be needed in that case.
