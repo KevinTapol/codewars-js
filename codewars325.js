@@ -18,51 +18,35 @@ Examples:
     }) --> 3
 
 Pseudocode
-    create an array of all the values of the input object
-    iterate through the array and create a shallow copy where each element type is string or the element type is an array that includes type string 
-    return the length of the new array
+    declare an empty array result to push the string elements to
+    create an array of all the input objects values using Object.values(inputObject)
+    create another copy of that array but flatten the array to infinity making a single 1 dimensional array of elements
+    iterate through the flattened array by index
+        if the type of the current element value is a string then push it to the array named result
+        if the current element value is an object and not null, undefined or empty then create a local array of the values of the current element value and iterate through the local current element value
+            if the nested for loop element object value type is a string then push the current element to the global array result
 
 */
 
 // My Answer
 function strCount(obj){
-    return Object.values(obj).filter((e) => typeof(e) === 'string' || (Array.isArray(e) && e.flat(Infinity).filter((el) => typeof(el) === 'string'))).length
+    let result = [];
+    let arrOfVals = Object.values(obj);
+    let flatArr = arrOfVals.flat(Infinity);
+
+    for (let i = 0; i <= flatArr.length; i++){
+        if (typeof flatArr[i] === "string") {
+            result.push(flatArr[i]);
+
+        } else if (typeof flatArr[i] === "object" && flatArr[i] !== null) {
+            let newArr = Object.values(flatArr[i]);
+
+            for (let j = 0; j <= newArr.length; j++) {
+                if (typeof newArr[j] === "string") {
+                    result.push(newArr[j]);
+                } 
+            }
+        }
+    }return result.length;
 }
 
-// console.log(strCount({
-//     first: "1",
-//     second: "2",
-//     third: false,
-//     fourth: ["anytime",2,3,4],
-//     fifth:  null
-//   })) // 3
-
-console.log(strCount({
-    first: '1',
-    second: '2',
-    third: false,
-    fourth: [ 'anytime', 2, 3, 4 ],
-    fifth: null,
-    sixth: undefined,
-    seventh: {}
-  }))
-
-  function strCount(obj){
-    let result = Object.values(obj).flat().filter((e)=> typeof(e) === 'string')
-    console.log(obj)
-    console.log(' ')
-    if(typeof(obj) != 'object'){
-        console.log('input is an object')
-    }else {
-    return result.length
-    }
-}
-
-function strCount(obj){
-    if(typeof(obj) === 'object'){
-        return Object.values(obj).flat().filter((e) => typeof(e) === 'string').length
-    }if (Array.isArray(obj)){
-        console.log('input is an array')
-    }
-}
-// ideas... take in all the object values. if arrays then flatten and concat them into a single array. if arrays from the start then set up conditionals for the input being an array instead of an object. global variable count might be needed in that case.
