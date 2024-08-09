@@ -39,6 +39,7 @@ Pseudocode:
 */
 
 // My Answer
+// Note when calling the object dynamically by key, we must use object.[key] instead of object.key
 function boredom(staff){
     const dept = {
         "accounts": 1,
