@@ -67,8 +67,10 @@ function minimumSteps(numbers, value){
     for(let i = 0; i <= sortArr.length; i++){
         if(sum < value){
             sum += sortArr[i]
-        } else {
             result = i
-        }
+        } 
     }return result
 }
+
+console.log(minimumSteps([4,6,3], 7)) // 1
+console.log(minimumSteps([19,98,69,28,75,45,17,98,67], 464)) // 8
