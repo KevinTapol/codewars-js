@@ -74,3 +74,39 @@ function minimumSteps(numbers, value){
 
 console.log(minimumSteps([4,6,3], 7)) // 1
 console.log(minimumSteps([19,98,69,28,75,45,17,98,67], 464)) // 8
+
+// Best Practices
+// similar to my answer here but using .slice() to make a copy of the input array and reversing the conditionals of the for loop
+function minimumSteps(numbers, value) {
+    const nums = numbers.slice().sort((a, b) => a - b);
+    for (let i = 0, sum = 0; i < nums.length; i++) {
+      sum += nums[i];
+      if (sum >= value) {
+        return i;
+      }
+    }
+}
+
+// Most Clever
+// Instead of returning the index of the sorted array element, here they create a copy with .filter() of only the elements then return the length of the copy.
+function minimumSteps(numbers, value){
+    return numbers.sort((a,b)=>a-b).filter((e,i)=> (value=value-e) > 0).length;
+}
+
+// Similar to most clever but using findIndex() instead of .length
+// also using arrow fn syntax but with {} so they can set a global variable and use the key word return. IMO it would be easier to either declare a default variable in the inputs and then use the single line return without {} and the key word return, or use normal function syntax.
+const minimumSteps = (numbers, value) => {
+    let sum = 0
+    return numbers.sort((a, b) => a - b).findIndex(number => (sum += number) >= value)
+  }
+
+// Clever use of .reduce() inside the conditional but ultimately unnecessary
+function minimumSteps(numbers, value){
+    let arr = numbers.sort((a,b) => a - b)
+    for(i=0;i < arr.length; i++){
+      if(arr.slice(0,i+1).reduce((a,b) => a + b, 0) >= value){
+        return i
+        }
+      }
+    return i
+}
