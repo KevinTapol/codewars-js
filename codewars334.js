@@ -38,21 +38,21 @@ function convertHashToArray(obj){
 // My Answer using Array.from()
 function convertHashToArray(obj){
   const keys = Object.keys(obj)
-  const values = Object.values(obj)
-  let result = Array.from({length: keys.length}, (e, i) => [keys[i], values[i]])
-//  let result = Array.from({length: keys.length}, (e, i) => [keys[i], obj[e])
+  let result = Array.from({length: keys.length}, (e, i) => [keys[i], obj[keys[i]]])
   return result
 }
 
-// My Answer using .reduce()
-// function convertHashToArray(obj){
-//   const keys = Object.keys(obj)
-//   const values = Object.values(obj)
-//   const result = keys.reduce((accObj, key) => { 
+// My Answer refactored arrow fn one liner default param for keys array with dynamic calls for values of object arrays for default keys variable
+const convertHashToArray = (obj, keys = Object.keys(obj)) => Array.from({length: keys.length}, (e, i) => [keys[i], obj[keys[i]]])
 
-//     return accObj
-//   }, [])
-//   return result
-
-// }
 console.log(convertHashToArray({name: "Jeremy", age: 24}))
+
+// Best Practices and Most Clever
+// Object.entries() takes in an object and returns a 2d array of key value pairs as array elements
+const convertHashToArray = o => Object.entries(o).sort()
+
+// cleaner version of my arrow fn answer using .map() instead of Array.from()
+const convertHashToArray = (hash) => Object.keys(hash).map(key => [key, hash[key]]).sort();
+
+// similar to my arrow fn answer but referencing element instead of index
+const convertHashToArray = (hash) => Array.from(Object.keys(hash), (v) => [v, hash[v]]).sort((a, b) => a > b);
