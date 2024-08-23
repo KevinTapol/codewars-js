@@ -23,4 +23,11 @@ function uniqueArr(arr){
     // return Array.from(new Set(arr))
     // iterate through the array and filter by where the indexOf the element is equal to the element
 }
-console.log(uniqueArr(["a", "a", "a", "b", "b"])) // [ 'a', 'b' ]
+// console.log(uniqueArr(["a", "a", "a", "b", "b"])) // [ 'a', 'b' ]
+
+/*
+Take in an object of key value pairs and return a 2d array where each element is an array of each key value pair.
+*/
+const convertHashToArray = o => Object.entries(o)
+
+console.log(convertHashToArray({name: "Jeremy", age: 24, role: "Software Engineer"})) // [["age", 24], ["name", "Jeremy"], ["role", "Software Engineer"]]
