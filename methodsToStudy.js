@@ -46,3 +46,14 @@ const sumCubes = (n) => ((n*(n + 1))/2)**2
 
 console.log(sumCubes(2)) // 9
 console.log(sumCubes(3)) // 36
+
+/*
+Return an integer representing the average of all the object value integers to the key age of all the objects rounded to the nearest integer
+NOTE even though age does not have quotes, we MUST use quotes to dynamically iterate through each object in the array for the .reduce() method. Otherwise, age will return as undefined.
+*/
+const getAverageAge = arr => Math.round(arr.reduce((acc, c) => acc + c['age'], 0)/arr.length)
+
+console.log(getAverageAge([
+  { firstName: 'Maria', lastName: 'Y.', country: 'Cyprus', continent: 'Europe', age: 30, language: 'Java' },
+  { firstName: 'Victoria', lastName: 'T.', country: 'Puerto Rico', continent: 'Americas', age: 70, language: 'Python' },
+])) // 50
