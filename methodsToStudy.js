@@ -57,3 +57,12 @@ console.log(getAverageAge([
   { firstName: 'Maria', lastName: 'Y.', country: 'Cyprus', continent: 'Europe', age: 30, language: 'Java' },
   { firstName: 'Victoria', lastName: 'T.', country: 'Puerto Rico', continent: 'Americas', age: 70, language: 'Python' },
 ])) // 50
+
+/*
+Math.methods() 
+.round() to nearest int 
+.ceil() rounds up 
+.floor() rounds down
+.trunc() removes decimal values and returns the integer
+.pow() 1st input is the base 2nd is the exponent
+*/
