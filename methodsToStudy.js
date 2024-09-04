@@ -66,3 +66,24 @@ Math.methods()
 .trunc() removes decimal values and returns the integer
 .pow() 1st input is the base 2nd is the exponent
 */
+
+/*
+a.localCompare(b) is supplementing the comparison return for a < b return -1 a > b return 1 a === b return 0
+.localCompare() can reverse the search with b.localCompare(a)
+.localCompare() can take into account accented chars
+*/ 
+const sortReindeer = reindeerNames => reindeerNames.sort((a, b) => a.split(' ')[1].localeCompare(b.split(' ')[1]));
+// const sortReindeer = reindeerNames => reindeerNames.sort((a, b) => ((a.split(' ')[1]) > (b.split(' ')[1])) ? 1 : ((a.split(' ')[1]) < (b.split(' ')[1])) ? -1 : 0);
+// const sortReindeer = reindeerNames => reindeerNames.sort((a, b) => b.localeCompare(a));
+
+
+console.log(sortReindeer([
+    "Dasher Tonoyan", 
+    "Dancer Moore", 
+    "Prancer Chua", 
+    "Vixen Hall", 
+    "Comet Karavani",        
+    "Cupid Foroutan", 
+    "Donder Jonker", 
+    "Blitzen Claus"
+  ]));
