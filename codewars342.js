@@ -34,8 +34,43 @@ console.log(stantonMeasure([1, 4, 3, 2, 1, 2, 3, 2])) // 3
 console.log(stantonMeasure([1, 4, 1, 2, 11, 2, 3, 1])) // 1
 
 // Best Practices and Most Clever
-// dry code version of my answer in that they use count as a higher order function
+// dry code version of my answer in that they use count as a higher order function declared as an immutable variable to first count the occurrences of 1 then count the count of the occurrences of 1
 function stantonMeasure(arr) {
   const count = n => arr.filter(x => x === n).length;
   return count(count(1));
+}
+
+// Brute Force For loop
+// iterate through to count the occurrences of 1 then again to count the count of occurrences of 1
+function stantonMeasure(intArr){
+  var count1=0;
+  var count2=0;
+  for(var i=0; i<intArr.length; i++){
+    if(intArr[i]===1){
+      count1++;
+    }
+  }
+  for(var j=0; j<intArr.length; j++){
+    if(intArr[j]===count1){
+      count2++
+    }
+  }
+  return(count2)
+}
+
+// Array methods but with variable declarations
+function stantonMeasure(array){  
+  const count = array.filter(num=>num === 1).length;
+  const stanton = array.filter(num=>num === count).length;
+
+  return stanton;
+}
+
+// brute force for loop but using the key word element of instead of index in or start stop step
+function stantonMeasure(array, target = 1) {
+	const count = {};
+	for (let cur of array) {
+  	count[cur] = (count[cur] || 0) + 1;
+  }
+  return count[count[target]] || 0;
 }
