@@ -26,6 +26,8 @@ Pseudocode:
 
     alternate
     create a array of object values and if the value is an object then create a 
+
+    new idea... use a while loop of while current object is an object then call the value and if the value is either a string, integer or boolean value then push it to the global variable array result. If it is still typeof object then repeat the object key value call to check for value type.
 */
 
 // My Answer
