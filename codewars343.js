@@ -20,41 +20,23 @@ Examples:
 {value: "foo", next: {value: "bar", next: null}} --> ["foo", "bar"]
 
 Pseudocode:
-    JSON.stringify() the input 
-    iterate through and grab every instance of ': ' to '}' that does not contain 'null' and push it to an empty array using .slice(indexOf(':') + 2, indexOf('))
-    return that array
+    declare an empty array name result to push the values that are not null to
+    loop through the input object and while the object is not null push the value of the object
+        set the next input using the input object with .next
+    outside of the while loop return the array result
 
-    alternate
-    create a array of object values and if the value is an object then create a 
-
-    new idea... use a while loop of while current object is an object then call the value and if the value is either a string, integer or boolean value then push it to the global variable array result. If it is still typeof object then repeat the object key value call to check for value type.
+    thinking of a way to do it with .reduce() .map() with obj.next
 */
 
 // My Answer
 function listToArray(obj) {
-     let result = []
-     let arr = Object.values(obj)
-     while(typeof(e) === 'object'){
-
-     }
-    // const objCheck = n => typeof(n) === 'object' ? Object.values(n) : ''
-    // return arr.map(e => typeof(e) === 'object' ? objCheck(e) : result.push(e))
+    let result = [];
+    
+    while (obj !== null) {
+      result.push(obj.value);
+      obj = obj.next;
+    }
+    return result;
 }
 
 console.log(listToArray({value: 1, next: {value: 2, next: {value: 3, next: null}}})) //
-/*
-declare an empty array result to push values to
-if the current value type is a string boolean or an integer then push it to result
-if the current value type is an object then while loop until the value is not an object and push it to result?
-function strCount(obj){
-    let temp = 0;
-    JSON.stringify(obj,(key,value)=>{
-        if (typeof value === 'string') {
-            temp++
-        }
-        return value;
-    })
-
-    return temp
-}
-*/
