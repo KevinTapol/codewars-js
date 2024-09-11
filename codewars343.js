@@ -39,4 +39,11 @@ function listToArray(obj) {
     return result;
 }
 
+// My Answer refactored using array methods
+// function listToArray(obj){
+//     let arr = Object.values(obj)
+//     // let result = arr.map((e,i) => typeof(e) === 'object' ? i === 0 ? e.value : e.next : e)
+    
+//     return result 
+// }
 console.log(listToArray({value: 1, next: {value: 2, next: {value: 3, next: null}}})) //
