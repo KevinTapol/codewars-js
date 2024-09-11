@@ -39,11 +39,34 @@ function listToArray(obj) {
     return result;
 }
 
-// My Answer refactored using array methods
-// function listToArray(obj){
-//     let arr = Object.values(obj)
-//     // let result = arr.map((e,i) => typeof(e) === 'object' ? i === 0 ? e.value : e.next : e)
-    
-//     return result 
-// }
 console.log(listToArray({value: 1, next: {value: 2, next: {value: 3, next: null}}})) //
+
+// Best Practices and Most Clever
+// clever use of for loop start is input obj for loop based on element start is input obj stop on e and increment on e.next. Each iteration pushes the value of the current element. Finally return the result
+function listToArray(obj) {
+    let array = [];
+    for (let e = obj; e; e = e.next)
+      array.push(e.value);
+    return array;
+}
+
+// using recursion with .next
+function listToArray(obj) {
+    return !obj ? [] : [obj.value].concat(listToArray(obj.next));
+}
+
+// Similar to best practices and most clever but specifying not null on the for loop stop
+function listToArray(list) {
+    for (var array = []; list !== null; list = list.next)
+      array.push(list.value);
+    return array;
+} 
+
+// using do while Note first action is done then next is conditional
+function listToArray(list) {
+    let res = [];
+    do {
+      res.push(list.value);
+    } while (list = list.next);
+    return res;
+}
