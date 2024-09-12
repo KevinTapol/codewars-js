@@ -87,3 +87,32 @@ console.log(sortReindeer([
     "Donder Jonker", 
     "Blitzen Claus"
   ]));
+
+// how to flatten an object
+function flattenObject(obj) {
+  const result = [];
+  
+  while (obj !== null) {
+    result.push(obj.value);
+    obj = obj.next;
+  }
+
+  return result;
+}
+
+// how to flatten an object using recursion
+function listToArray(obj) {
+  return !obj ? [] : [obj.value].concat(listToArray(obj.next));
+}
+
+// clever use of for loop start is input obj for loop based on element start is input obj stop on e and increment on e.next. Each iteration pushes the value of the current element. Finally return the result
+function listToArray(obj) {
+  let array = [];
+  for (let e = obj; e; e = e.next)
+    array.push(e.value);
+  return array;
+}
+
+const input = { value: 1, next: { value: 2, next: { value: 3, next: null } } };
+const output = flattenObject(input);
+console.log(output); // Output: [1, 2, 3]
