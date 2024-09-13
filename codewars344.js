@@ -2,6 +2,18 @@
 For the sake of argument
 
 NOTE ignore test current issue bug. Go straight to attempt/submit
+test cases needed to add to success
+describe("Tests", () => {
+  it("test", () => {
+Test.expect(numbers(1, 12, 3, 100), 'Should return true when passed (1, 12, 3, 100)');
+Test.expect(!numbers("1", "2", "3", "4"), 'Should return false when passed ("1", "2", "3", "4")');
+Test.expect(numbers(1), 'Should return true when passed (1)');
+Test.expect(!numbers(1, "2", [3, 4], "a"), 'Should return false when passed (1, "2", [3, 4], "a")');
+Test.expect(numbers(1, NaN, 3), 'Should return true when passed (1, NaN, 3)');
+Test.expect(!numbers(null), 'Should return false when passed (null)');
+
+  });
+});
 
 Parameters or Edge Cases:
     inputs will vary in number and type
