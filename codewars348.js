@@ -50,11 +50,14 @@ If for example, no users are online the output should look as follows:
 
 Pseudocode:
     if the input array is empty then return an empty object
-    declare an object named result with the keys of online, offline and away with empty arrays for values
+    declare an empty object to push to
     iterate through the object
-        if the value for status is offline then add the current username string to the result object key of offline value array as a string
-        if the value for status is online and lastActivity value is greater than 10 then add the current username string to the result object key of away value array as a string
+        if the value for status is offline then add the current username string to the result object key of offline value array as a string 
+          if the current value does not exist then create the key as the status and add the username as a string to an empty array
+        if the value for status is online and lastActivity value is greater than 10 then add the current username string to the result object key of away value array as a string 
+          if the current value does not exist then create the key as the status and add the username as a string to an empty array
         else add the username to the result object key online value array as a string
+          if the current value does not exist then create the key as the status and add the username as a string to an empty array
 
     return the final object
 
@@ -62,28 +65,19 @@ Pseudocode:
 
 // My Answer
 function whosOnline(arr){
+    let result = {}
     if(!arr){
-        return {}
-    }
-    let result = {
-        online: [],
-        offline: [],
-        away: []
+        return result
     }
     for(e of arr){
-        // consider making result an empty object then if the key does not exist make it and add the value else add the value to the existing key
         if(e.status === 'offline'){
-            result.offline.push(e.username)
+          !result.offline ? result.offline = [e.username] : result.offline.push(e.username)
         } else if (e.status === 'online' && e.lastActivity > 10){
-            result.away.push(e.username)
+          !result.away ? result.away = [e.username] : result.away.push(e.username)
         } else {
-            result.online.push(e.username)
+            !result.online ? result.online = [e.username] : result.online.push(e.username)
         }
     }
-    // if the value is [] then remove the key from result object
-    // if(result.online === []){
-        
-    // }
     return result
 }
 
@@ -99,3 +93,29 @@ console.log(whosOnline([
     lastActivity: 22
   }
 ])) // 
+
+
+// Best Practices
+// similar to my answer but refactored currentElement.status instead of separate if, else if and else statements
+const whosOnline = (friends) => {
+  let output = {};
+  friends.forEach(e => {
+      let status = e.status;
+      if(status === 'online' && e.lastActivity > 10) status = 'away';
+      let temp = output[status];
+      if(output[status]) {
+          output[status].push(e.username);
+      }
+      else {
+          output[status] = [e.username];
+      }
+  });
+  return output;
+}
+
+// Most Clever using .reduce()
+const whosOnline = friends => friends.reduce((a,{username, status, lastActivity}) => {
+  const fStatus = status === 'online' && lastActivity > 10 ? 'away' : status;
+  a[fStatus] ? a[fStatus].push(username) : a[fStatus] = [username];
+  return a;
+}, {})
