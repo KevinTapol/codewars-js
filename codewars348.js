@@ -119,3 +119,75 @@ const whosOnline = friends => friends.reduce((a,{username, status, lastActivity}
   a[fStatus] ? a[fStatus].push(username) : a[fStatus] = [username];
   return a;
 }, {})
+
+// using .forEach instead of for loop 
+const whosOnline = (friends) => {
+  const output = {}
+  friends.forEach((n) => {
+      if (n.status === 'online' && n.lastActivity <= 10) {
+          if (!output.online) output.online = [];
+          output.online.push(n.username)
+      } else if (n.status === 'offline') {
+          if(!output.offline) output.offline = [];
+          output.offline.push(n.username)
+      } else {
+          if(!output.away) output.away = [];
+          output.away.push(n.username)
+      }
+  })
+  return output;
+}
+
+// creating a nested array for conditionals, then using .map() to consolidate and finally using .reduce() to create an empty object to push to
+const whosOnline = friends =>
+  [['online',  friend => friend.status === 'online' && friend.lastActivity <= 10],
+   ['away',    friend => friend.status === 'online' && friend.lastActivity >  10],
+   ['offline', friend => friend.status === 'offline']]
+  .map(([status, func]) => [status, friends.filter(func).map(friend => friend.username)])
+  .reduce((result, [status, array]) => {
+      if (array.length) result[status] = array;
+      return result;
+}, {});
+
+// creating a function getStatus to make .reduce() dry code 
+const whosOnline = (friends) => {
+
+  let status;  
+
+  const getStatus = friend => 
+    friend.status === 'online' && friend.lastActivity > 10 
+    ? 'away' 
+    : friend.status;
+
+  return friends.reduce((state, friend) => (
+    status = getStatus(friend),
+    state[status] = state[status] || [],
+    state[status].push(friend.username),
+    state
+  ), {});
+
+}
+
+// declaring empty arrays for the object then for loop conditional logic
+const whosOnline = (friends) => {
+  let online = []
+  let away = []
+  let offline = []
+  let result = {}
+  for(let i in friends){
+      if(friends[i].status == 'online' && friends[i].lastActivity <= 10){            
+          online.push(friends[i].username)
+          result.online = online
+      }
+      else if(friends[i].status == 'offline'){
+          offline.push(friends[i].username)
+          result.offline = offline
+      }
+      else{            
+          away.push(friends[i].username)
+          result.away = away
+    }
+  }
+  
+  return result
+}
