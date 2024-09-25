@@ -116,3 +116,19 @@ function listToArray(obj) {
 const input = { value: 1, next: { value: 2, next: { value: 3, next: null } } };
 const output = flattenObject(input);
 console.log(output); // Output: [1, 2, 3]
+
+/*
+Return a unique array of inputs where only duplicates remain also excluding the first occurrence of duplicates 
+NOTE .reduce() logic iterates only once creating a unique set using the conditions of if the current element is not the first occurrence AND does not currently exists in the accumulative object prev.
+The arrow fn answer keeps the 2nd and on duplicates then creates a unique array of elements with [...new Set(array)].
+*/
+function duplicates(arr) {
+  return arr.reduce((prev, cur, i, a) => {
+    if (i !== a.indexOf(cur) && prev.indexOf(cur) === -1) {
+      prev.push(cur);
+    }
+    return prev;
+  }, []);
+}
+
+const duplicates = arr => [...new Set(arr.filter((el, i) => i !== arr.indexOf(el)))]
