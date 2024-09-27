@@ -53,7 +53,7 @@ console.log(oddOnesOut([1, 2, 3, 1, 3, 3])) // [1, 1]
 
 
 // Best Practices 
-// using .forEach() instead of for loop 
+// using .forEach() to push to an empty object each element as a key and the count of occurrence as the value
 function oddOnesOut(nums) {
 
     const results = {};
