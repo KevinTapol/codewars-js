@@ -21,16 +21,25 @@ Create a unique set of elements of the input array.
 function uniqueArr(arr){
     return [...new Set(arr)]
     // return Array.from(new Set(arr))
-    // iterate through the array and filter by where the indexOf the element is equal to the element
+    // iterate through the array and filter by where the index is equal to the indexOf the element first occurrence
+    // arr.filter((e, i) => i === arr.indexOf(e))
 }
 // console.log(uniqueArr(["a", "a", "a", "b", "b"])) // [ 'a', 'b' ]
 
 /*
 Take in an object of key value pairs and return a 2d array where each element is an array of each key value pair.
 */
-const convertHashToArray = o => Object.entries(o)
+const objToMatrix = o => Object.entries(o)
 
-console.log(convertHashToArray({name: "Jeremy", age: 24, role: "Software Engineer"})) // [["age", 24], ["name", "Jeremy"], ["role", "Software Engineer"]]
+console.log(objToMatrix({name: "Jeremy", age: 24, role: "Software Engineer"})) // [["age", 24], ["name", "Jeremy"], ["role", "Software Engineer"]]
+
+/*
+Take in a 2d Array aka matrix and return an object with the nested arrays as elements and index 0 as a key and elements at index 1 as the value.
+*/
+const matrixToObj = matrix => Object.fromEntries(obj)
+
+console.log(matrixToObj([["age", 24], ["name", "Jeremy"], ["role", "Software Engineer"]])) // {name: "Jeremy", age: 24, role: "Software Engineer"}
+
 
 /*
 Gauss Theorem n(n+1)/2 but for the power of 3 per each element ((n*(n + 1))/2)**2
