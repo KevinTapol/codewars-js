@@ -22,7 +22,7 @@ Pseudocode:
     return the array result
 */
 
-// My Answer
+// My Answer brute force for loop
 function getNiceNames(...obj){
     let flatArr = obj.flat(Infinity)
     let result = []
@@ -33,7 +33,6 @@ function getNiceNames(...obj){
     }
     return result
 } 
-
   
   function getNaughtyNames(...obj){
     let flatArr = obj.flat(Infinity)
@@ -46,4 +45,68 @@ function getNiceNames(...obj){
     return result
 }
 
-console.log(getNiceNames({name: 'Santa', wasNice: true}, {name: 'Warrior reading this kata', wasNice: true})) //
+// My Answer refactored
+function getNiceNames(...obj){
+    return obj.flat(Infinity).map(e => e['wasNice'] === true ? e['name'] : '').filter(e => e != '')
+}
+function getNaughtyNames(...obj){
+    return obj.flat(Infinity).map(e => e['wasNice'] === false ? e['name'] : '').filter(e => e != '')
+}
+
+// My Answer refactored one liner arrow fn
+const getNiceNames = (...obj) => obj.flat(Infinity).map(e => e['wasNice'] === true ? e['name'] : '').filter(e => e != '')
+const getNaughtyNames = (...obj) => obj.flat(Infinity).map(e => e['wasNice'] === false ? e['name'] : '').filter(e => e != '')
+
+console.log(getNiceNames({name: 'Santa', wasNice: true}, {name: 'Warrior reading this kata', wasNice: true})) // ['Santa', 'Warrior reading this kata']
+console.log(getNaughtyNames({name: 'Santa', wasNice: true}, {name: 'Warrior reading this kata', wasNice: true})) // []
+
+// Best Practices and Most Clever Deprecated code that still works on some browsers!!!
+function getName(person) {
+    return person.name;
+  }
+  
+  function wasNice(person) {
+    return person.wasNice;
+  }
+  
+  function wasNaughty(person) {
+    return !wasNice(person);
+  }
+  
+  function getNiceNames(people){
+    return people.filter(wasNice).map(getName);
+  }
+  
+  function getNaughtyNames(people){
+    return people.filter(wasNaughty).map(getName);
+  }
+
+// IMO Best Practices and Most Clever
+// filter where wasNice is true then map only the name property
+function getNiceNames(people){
+    return people.filter(p => p.wasNice).map(p => p.name);
+}
+  
+  function getNaughtyNames(people){
+     return people.filter(p => !p.wasNice).map(p => p.name);
+}
+
+// using .reduce()
+function getNiceNames(people){
+    return people.reduce(function(arr, curr){
+      curr.wasNice && arr.push(curr.name);
+      return arr;
+    }, []);
+}
+  
+  function getNaughtyNames(people){
+      return people.reduce(function(arr, curr){
+      !curr.wasNice && arr.push(curr.name);
+      return arr;
+    }, []);
+}
+
+// clean .reduce()
+const getNiceNames = people => people.reduce((pre, val) => val.wasNice ? [...pre, val.name] : pre, []);
+  
+const getNaughtyNames = people => people.reduce((pre, val) => val.wasNice ? pre : [...pre, val.name], []);
