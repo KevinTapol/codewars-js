@@ -141,3 +141,43 @@ function duplicates(arr) {
 }
 
 const duplicates = arr => [...new Set(arr.filter((el, i) => i !== arr.indexOf(el)))]
+
+/*
+varied amount of inputs
+*/
+function randNumOfInputs(...obj){
+  return obj
+}
+
+console.log(randNumOfInputs({name: 'Santa', wasNice: true}, {name: 'Warrior reading this kata', wasNice: true})) 
+/*
+Output
+[
+{ name: 'Santa', wasNice: true },
+{ name: 'Warrior reading this kata', wasNice: true }
+]
+*/ 
+
+/*
+varied amount of inputs including arrays then flattened to a 1d array of inputs
+*/
+function randNumAndTypeOfInputs(...obj){
+  return obj.flat(Infinity)
+}
+
+console.log(randNumAndTypeOfInputs(
+  {name: 'Santa', wasNice: true}, 
+  {name: 'Warrior reading this kata', wasNice: true},
+  ['soloArr'],
+  [['2DNestedArr'], '1DNestedArr']
+)) 
+/*
+Output
+[
+{ name: 'Santa', wasNice: true },
+{ name: 'Warrior reading this kata', wasNice: true },
+'soloArr',
+'2DNestedArr',
+'1DNestedArr'
+]
+*/ 
