@@ -34,6 +34,33 @@ function crap(x, bags, cap){
   }
 }
 
+// My Answer refactored ternary
+function crap(x, bags, cap){
+  let result = x.flat().filter(e => e != '_')
+  return result.includes('D')? 'Dog!!' : result.length > bags*cap ? 'Cr@p' : 'Clean'
+}
+
+// My Answer one liner arrow fn
+const crap = (x, bags, cap, result = x.flat().filter(e => e != '_')) => result.includes('D')? 'Dog!!' : result.length > bags*cap ? 'Cr@p' : 'Clean'
+
+
 console.log(crap([['_','_'], ['_','@'], ['D','_']], 2, 2)) // "Dog!!"
 console.log(crap([['_','_','_','_'], ['_','_','_','@'], ['_','_','@', '_']], 1, 1)) // "Cr@p"
 console.log(crap([['_','_','_','_'], ['_','_','_','@'], ['_','_','@', '_']], 2, 2)) // "Clean"
+
+// Best Practices and Most Clever
+// using .concat() and .reduce() to flatten the array instead of .flat()
+function crap(x, bags, cap){
+  var yard = x.reduce( (a, b) => a.concat(b) );
+  return yard.includes('D') ? 'Dog!!' : bags * cap - yard.filter( val => val === '@' ).length > 0 ? 'Clean' : 'Cr@p';
+}
+
+// using .split() to remove '_' instead of .filter()
+crap=(a,b,c)=>(a+"").includes("D")?"Dog!!":(a+"").split("@").length-1<=b*c?"Clean":"Cr@p"
+
+// using .match() and regex
+function crap(x, bags, cap){
+  let crap = String(x).match(/@/g) === null ? 0 : String(x).match(/@/g).length
+  let d = String(x).match(/[D]/g) === null ? 0 : String(x).match(/[D]/g).length
+  return d > 0 ? 'Dog!!' : bags*cap >= crap ? 'Clean' : 'Cr@p'
+}
