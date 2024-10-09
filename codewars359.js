@@ -37,13 +37,16 @@ Pseudocode:
     if at final index set global var result = to local variable current element
     
     array iteration
-        if the current state is equal to the next state set the comparison current state to empty
+        if the current state is equal to the next state set the comparison current state to empty and add 1 to i to skip the set the next element as the new state
         if comparing an empty to next set the current state to next value and continue
         if the current state and the next state differs  and the current state is not empty then set the next state to current state and continue 
 */ 
 function likeOrDislike(arr) {
     if(!arr){
         return []
+    }
+    if(arr.length === 1){
+        return arr[i]
     }
 
     let newArr = arr.map(e => e === "Like" ? 1 : -1)
