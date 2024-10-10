@@ -53,10 +53,14 @@ function likeOrDislike(arr) {
     let result = newArr[0]
     let num = 0
     
+    // 3 conditions 1 vs -1, same vs same or -1 vs 1
     for(let i = 1; i < newArr.length; i++){
         if(result === newArr[i]){
 
+            result = newArr[i + 1] || 0
+            i++
         }
+
     }
 
     if(result === 1){
@@ -69,5 +73,5 @@ function likeOrDislike(arr) {
 }
 
 console.log(likeOrDislike(["Dislike","Dislike"])) // "Nothing"
-console.log(likeOrDislike([ 'Dislike' ])) // "DisLike"
-console.log(likeOrDislike(["Like","Like","Dislike","Like","Like","Like","Like","Dislike"])) // "Nothing"
+// console.log(likeOrDislike([ 'Dislike' ])) // "DisLike"
+// console.log(likeOrDislike(["Like","Like","Dislike","Like","Like","Like","Like","Dislike"])) // "Nothing"
