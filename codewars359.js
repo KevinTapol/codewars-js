@@ -42,36 +42,29 @@ Pseudocode:
         if the current state and the next state differs  and the current state is not empty then set the next state to current state and continue 
 */ 
 function likeOrDislike(arr) {
+    // console.log(arr)
     if(!arr){
         return []
     }
     if(arr.length === 1){
-        return arr[i]
+        return arr[0]
     }
 
-    let newArr = arr.map(e => e === "Like" ? 1 : -1)
-    let result = newArr[0]
-    let num = 0
+    let result = arr[0]
     
-    // 3 conditions 1 vs -1, same vs same or -1 vs 1
-    for(let i = 1; i < newArr.length; i++){
-        if(result === newArr[i]){
-
-            result = newArr[i + 1] || 0
-            i++
+    // 2 conditions same and not same
+    for(let i = 1; i < arr.length; i++){
+        if(result === arr[i]){
+            result = "Nothing"
+        }
+        else if(result !== arr[i]) {
+            result = arr[i]
         }
 
-    }
-
-    if(result === 1){
-        return "Like"
-    } else if (result === -1){
-        return "Dislike"
-    } else {
-        "Nothing"
-    }
+    } return result
 }
 
 console.log(likeOrDislike(["Dislike","Dislike"])) // "Nothing"
-// console.log(likeOrDislike([ 'Dislike' ])) // "DisLike"
-// console.log(likeOrDislike(["Like","Like","Dislike","Like","Like","Like","Like","Dislike"])) // "Nothing"
+console.log(likeOrDislike(["Dislike","Dislike","Like"])) // "Like"
+console.log(likeOrDislike([ 'Dislike' ])) // "DisLike"
+console.log(likeOrDislike(["Like","Like","Dislike","Like","Like","Like","Like","Dislike"])) // "Dislike"
