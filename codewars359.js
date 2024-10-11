@@ -41,27 +41,24 @@ Pseudocode:
         if comparing an empty to next set the current state to next value and continue
         if the current state and the next state differs  and the current state is not empty then set the next state to current state and continue 
 */ 
+
+// My Answer 
 function likeOrDislike(arr) {
-    // console.log(arr)
     if(!arr){
-        return []
-    }
-    if(arr.length === 1){
+        return "Nothing"
+    }if(arr.length === 1){
         return arr[0]
     }
-
     let result = arr[0]
     
-    // 2 conditions same and not same
     for(let i = 1; i < arr.length; i++){
         if(result === arr[i]){
             result = "Nothing"
-        }
-        else if(result !== arr[i]) {
+        }else if(result !== arr[i]) {
             result = arr[i]
         }
+    }return result === undefined ? "Nothing" : result
 
-    } return result
 }
 
 console.log(likeOrDislike(["Dislike","Dislike"])) // "Nothing"
