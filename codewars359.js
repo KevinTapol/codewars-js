@@ -65,3 +65,57 @@ console.log(likeOrDislike(["Dislike","Dislike"])) // "Nothing"
 console.log(likeOrDislike(["Dislike","Dislike","Like"])) // "Like"
 console.log(likeOrDislike([ 'Dislike' ])) // "DisLike"
 console.log(likeOrDislike(["Like","Like","Dislike","Like","Like","Like","Like","Dislike"])) // "Dislike"
+
+// Best Practices
+function likeOrDislike(buttons) {
+    let state = 'Nothing';
+  
+    for (let i = 0; i < buttons.length; i++) {
+      if (buttons[i] === state) {
+        state = 'Nothing'
+      } else {
+        state = buttons[i]
+      }
+    }
+  
+    return state
+}
+
+// Most Clever
+// using .reduce() but the accumulative variable
+function likeOrDislike(buttons) {
+    return buttons.reduce( (state,button) => button===state ? Nothing : button , Nothing );
+}
+
+// .forEach() switch case
+function likeOrDislike(buttons) {
+    let state = 'Nothing'
+    buttons.forEach((button) => {
+      switch(button){
+        case 'Like': return state !== 'Like' ? state = 'Like' : state = 'Nothing'
+        case 'Dislike': return state !== 'Dislike' ? state = 'Dislike' : state = 'Nothing'
+        default: return state
+      }
+    })
+    return state
+}
+
+// switch case using .map() instead of .forEach()
+function likeOrDislike(buttons) {
+    if(!buttons.length) return 'Nothing';
+    
+    let state = 'Nothing';
+    
+    buttons.map(button => {
+      switch(button) {
+          case 'Dislike':
+            state = state == 'Dislike' ? 'Nothing' : 'Dislike';
+          break;
+          case 'Like':
+            state = state == 'Like' ? 'Nothing' : 'Like';
+          break;
+      }
+    });
+    
+    return state;
+}
