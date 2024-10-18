@@ -36,7 +36,7 @@ console.log(objToMatrix({name: "Jeremy", age: 24, role: "Software Engineer"})) /
 /*
 Take in a 2d Array aka matrix and return an object with the nested arrays as elements and index 0 as a key and elements at index 1 as the value.
 */
-const matrixToObj = matrix => Object.fromEntries(obj)
+const matrixToObj = matrix => Object.fromEntries(matrix)
 
 console.log(matrixToObj([["age", 24], ["name", "Jeremy"], ["role", "Software Engineer"]])) // {name: "Jeremy", age: 24, role: "Software Engineer"}
 
