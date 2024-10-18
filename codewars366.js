@@ -53,7 +53,7 @@ function search(budget, prices) {
     return arr.sort(function(a,b){ return a > b }).join();
 }
 
-// brute force for loop instead of .forEach()
+// brute force for loop instead of .forEach() or .filter()
 function search(b, p) {
     let a = p.sort((z,x)=>z-x);
     let r = [];
