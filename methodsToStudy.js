@@ -51,7 +51,7 @@ input n 1^3 + 2^3 + ... + n^3
 const sumCubes = (n) => ((n*(n + 1))/2)**2
 
 // Alternative Answer
-// const sumCubes = n => [...Array(n + 1).keys()].reduce((r, i) => r + i ** 3)
+// const sumCubes = n => [...Array(n + 1).keys()].reduce((acc, c) => acc + c**3)
 
 console.log(sumCubes(2)) // 9
 console.log(sumCubes(3)) // 36
@@ -181,3 +181,30 @@ Output
 '1DNestedArr'
 ]
 */ 
+
+/*
+  Given an array of integers, create an array of objects where the integers are the keys and the values are the charCode values of the integers.
+*/
+
+// .reduce
+function numObj(s){
+  return s.reduce((acc, c) => {
+      let obj = {}
+      obj[c] = String.fromCharCode(c)
+      acc.push(obj)
+      return acc
+  }, [])
+}
+
+// .reduce refactored one liner REQUIRED ; PER LOGIC STEP
+const numObj = s => s.reduce((acc, c) => { let obj = {}; obj[c] = String.fromCharCode(c); acc.push(obj); return acc }, [])
+
+// .map() note necessary () outside of object and [] for dynamic iteration of keys [e]
+function numObj(s){
+  return s.map(e =>  ({ [e]: String.fromCharCode(e) }))
+}
+
+const numObj = s => s.map(e => ({ [e]: String.fromCharCode(e) }))
+
+console.log(numObj([118,117,120])) // [{'118':'v'}, {'117':'u'}, {'120':'x'}]
+console.log(numObj([101,121,110,113,113,103])) // [{'101':'e'}, {'121':'y'}, {'110':'n'}, {'113':'q'}, {'113':'q'}, {'103':'g'}]
