@@ -26,6 +26,12 @@ function lengthOfSequence (arr, n) {
     return arr.length === 2 ? 2 : arr.filter(e => e === n).length != 2 ? 0 : arr.slice(fArr[0], fArr[1] + 1).length
 }
 
+// If I add a char to the empty string the .map() index won't be altered removing 0 index elements. Using this, I can remove the conditional adding back 0 index.
+function lengthOfSequence (arr, n) {
+    let fArr = arr.map((e, i) => e === n ? i : 'x').filter(e => e != 'x')
+    return arr.length === 2 ? 2 : arr.filter(e => e === n).length != 2 ? 0 : arr.slice(fArr[0], fArr[1] + 1).length
+}
+
 // here the 0 index element is not being removed but the above is why? .map '' vs undefined altering index ? maybe acting like a .find() first instance?
 function lengthOfSequence (arr, n) {
     let fArr = arr.map((e, i) => e === n ? i : undefined).filter(e => e != undefined)
@@ -57,4 +63,4 @@ var lengthOfSequence = function (arr, n) {
     var index3 = arr.indexOf(n,index2 + 1);
     if (index1 == -1 || index2 == -1 || index3 != -1) {return 0} ;
     return index2 - index1 + 1;
-  };
+}
