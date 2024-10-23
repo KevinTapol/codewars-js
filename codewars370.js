@@ -35,3 +35,26 @@ function lengthOfSequence (arr, n) {
 
 console.log(lengthOfSequence([1, 2, 3, 1], 1)) // 4
 console.log(lengthOfSequence([1, 1], 1)) // 2
+
+// Best Practices and Most Clever
+// indexOf() and lastIndexOf()
+function lengthOfSequence(arr, n){
+    return arr.count(n) == 2 ? arr.lastIndexOf(n) - arr.indexOf(n) + 1 : 0;
+  }
+  
+  Array.prototype.count = function(n){
+    return this.filter(function(v){ return v == n }).length;
+}
+
+// one liner using indexOf() and lastIndexOf()
+const lengthOfSequence = (arr, n) => arr.filter(val => val === n).length === 2 ? arr.lastIndexOf(n) - arr.indexOf(n) + 1 : 0;
+
+// declared variables and conditionals
+var lengthOfSequence = function (arr, n) {
+    // TODO: Write some scripts here
+    var index1 = arr.indexOf(n);
+    var index2 = arr.indexOf(n,index1 + 1);
+    var index3 = arr.indexOf(n,index2 + 1);
+    if (index1 == -1 || index2 == -1 || index3 != -1) {return 0} ;
+    return index2 - index1 + 1;
+  };
