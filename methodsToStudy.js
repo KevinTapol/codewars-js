@@ -73,7 +73,8 @@ Math.methods()
 .ceil() rounds up 
 .floor() rounds down
 .trunc() removes decimal values and returns the integer
-.pow() 1st input is the base 2nd is the exponent
+.pow() 1st input is the base 2nd is the exponent 1st**2nd
+.sqrt() returns the square root of the input aka **0.5
 */
 
 /*
@@ -200,11 +201,70 @@ function numObj(s){
 const numObj = s => s.reduce((acc, c) => { let obj = {}; obj[c] = String.fromCharCode(c); acc.push(obj); return acc }, [])
 
 // .map() note necessary () outside of object and [] for dynamic iteration of keys [e]
+/*
+  The parentheses () around the object literal tell JavaScript that you are returning an object, not opening a block of code.
+  When using arrow functions, if the function body directly returns an object literal, JavaScript will interpret the curly braces {} as the start of a block of code rather than an object literal. To indicate that you're returning an object, you need to wrap the object literal in parentheses.
+*/
 function numObj(s){
-  return s.map(e =>  ({ [e]: String.fromCharCode(e) }))
+  return s.map(e => ({ [e]: String.fromCharCode(e) }))
 }
 
 const numObj = s => s.map(e => ({ [e]: String.fromCharCode(e) }))
 
 console.log(numObj([118,117,120])) // [{'118':'v'}, {'117':'u'}, {'120':'x'}]
 console.log(numObj([101,121,110,113,113,103])) // [{'101':'e'}, {'121':'y'}, {'110':'n'}, {'113':'q'}, {'113':'q'}, {'103':'g'}]
+
+// Difference between String.fromCodePoint() and String.fromCharCode()
+console.log(String.fromCodePoint(9731, 9733, 9842, 0x2f804))
+console.log(String.fromCharCode(9731, 9733, 9842, 0x2f804))
+
+/*
+sorting numbers and letters with local compare
+*/
+console.log([ 6, 'c' ].sort((a, b) => String(b).localeCompare(String(a))))
+
+/*
+Since boolean true false combos evaluate to false I need to isolate the condition when both elements are strings to return 'Void!'. So, if I reverse the boolean true false with a ! then I can isolate all instances where the elements are numbers to generate an array else return 'Void!'.
+
+add both elements then use regex to remove all str that are not [0-9] and convert the result into a number
+create an array with the length of the result with the element(s) equal to the input 
+sort fails because it alters the original value
+*/
+function explode(x){
+  if(!(typeof x[1] === 'string' && typeof x[0] === 'string')){
+      let str = (x[0] + x[1]).toString()
+      let n = Number(str.replace(/[^0-9]/g, ''))
+      return Array.from({length:n}, (e) => e = x)
+  } else {
+      return 'Void!'
+  }
+}
+
+console.log(explode([9, 3])) // [[9, 3], [9, 3], [9, 3], [9, 3], [9, 3], [9, 3], [9, 3], [9, 3], [9, 3], [9, 3], [9, 3], [9, 3]]
+console.log(explode(['a', 3])) // [['a', 3], ['a', 3], ['a', 3]]
+console.log(explode(['a', 'b'])) // 'Void!'
+console.log(explode(["a", 0])) // []
+console.log(explode([ 6, 'c' ])) // [ [ 6, 'c' ], [ 6, 'c' ], [ 6, 'c' ], [ 6, 'c' ], [ 6, 'c' ], [ 6, 'c' ] ]
+
+
+// check to see if default can be non zero
+function test (arr){
+  return arr.reduce((acc, c) => acc + c, 1)
+
+}
+console.log(test([4, 1, 1, 1, 4])) // [4, 1, 4]
+
+/*
+  Output array must have no pairs of consecutive elements which sum equal to t
+  .reduce() with non empty default
+*/  
+function trouble(x, t){
+  let arr = x.slice(1)
+  let result = arr.reduce((acc, c) => {
+      acc[acc.length - 1] + c != t ? acc.push(c) : ''
+      return acc
+  }, [x[0]])
+  return result
+}
+
+console.log(trouble([4, 1, 1, 1, 4],2)) // [4, 1, 4]
