@@ -268,3 +268,6 @@ function trouble(x, t){
 }
 
 console.log(trouble([4, 1, 1, 1, 4],2)) // [4, 1, 4]
+
+// new line 
+console.log('cheeseburgers\n)())())')
