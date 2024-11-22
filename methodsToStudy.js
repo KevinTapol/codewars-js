@@ -271,3 +271,50 @@ console.log(trouble([4, 1, 1, 1, 4],2)) // [4, 1, 4]
 
 // new line 
 console.log('cheeseburgers\n)())())')
+
+// brute force for loop
+function tribonacci(arr,n){  
+  for (let i = 0; i < n-3; i++) { // iterate n times
+    arr.push(arr[i] + arr[i+1] + arr[i+2]); // add last 3 array items and push to trib
+  }
+  return arr.slice(0, n); //return trib - length of n
+}
+
+// clever one liner using [...Array(n)] to create an array of elements with the length of n then .reduce() referencing accumulated array and index with the default being the input array
+const tribonacci = (signature, n) => [...Array(n)].reduce((arr, _, idx) => [...arr, arr[idx] + arr[idx+1] + arr[idx+2]], signature).slice(0, n);
+
+console.log(tribonacci([300,200,100], 0)) // []
+console.log(tribonacci([1,1,1],  1)) // [1]
+console.log(tribonacci([1,1,1], 10)) // [1,1,1,3,5,9,17,31,57,105]
+
+
+// My Answer using array methods with a string key reference for alphabet chars a-z index values 1-26 with the first char as 0 for 0
+function high(x){   
+  const key = '0abcdefghijklmnopqrstuvwxyz'
+  const arr = x.split(' ').map((e) => e.split('').reduce((acc, c) => acc + key.indexOf(c), 0))
+  return x.split(' ')[arr.indexOf(Math.max(...arr))]
+}
+
+
+/*
+  Return the earliest occurrence of a word from the input string where the combination of each char added up is the highest value with char value based on a-z 1-26
+  
+  Best Practices and Most Clever
+  similar to my array method answer but using .charCodeAt() instead of an array to reference index values of a-z
+  Since every current element is a single string char, the value passed in .charCodeAt() will always be 0 for index 0. (static instead of dynamic)
+*/ 
+function high(s){
+  let as = s.split(' ').map(s=>[...s].reduce((a,b)=>a+b.charCodeAt(0)-96,0));
+  return s.split(' ')[as.indexOf(Math.max(...as))];
+}
+
+/*
+    clean separate function .reduce() with dynamic .charCodeAt() that returns the sum value of a word of chars  using a .reduce() to compare  
+    the second fn uses .reduce() and the first fn to find the highest value word without using Math.max(...array)
+*/ 
+function high(x){
+  const score = s => s.split('').reduce((m,i) => m + i.charCodeAt(0)-96,0);
+  return x.split(' ').reduce((s,n)=> score(s) < score(n) ? n : s);
+}
+
+console.log(high('take me to semynak')) // 'semynak'
