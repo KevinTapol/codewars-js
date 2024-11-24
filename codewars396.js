@@ -38,21 +38,21 @@ Pseudocode:
 
 */
 
-// My Answer
-// function scoreTest(str, right, omit, wrong){
-//     let sum = 0
-//     for(let i = 0; i < str.length; i++){
-//         if(str[i] === 0){
-//             sum += right
-//         }
-//         if(str[i] === 1){
-//             sum += omit
-//         }
-//         if(str[i] === 2){
-//             sum -= wrong
-//         }
-//     }return sum
-// }
+// My Answer brute force for loop
+function scoreTest(str, right, omit, wrong){
+    let sum = 0
+    for(let i = 0; i < str.length; i++){
+        if(str[i] === 0){
+            sum += right
+        }
+        if(str[i] === 1){
+            sum += omit
+        }
+        if(str[i] === 2){
+            sum -= wrong
+        }
+    }return sum
+}
 
 // My Answer brute force for loop refactored
 function scoreTest(str, right, omit, wrong){
@@ -62,8 +62,33 @@ function scoreTest(str, right, omit, wrong){
     }return sum
 }
 
-// My Answer refactored
-// const scoreTest = (str, right, omit, wrong) => str.reduce((acc, c) => c === 0 ? acc + right : c === 1 ? acc + omit : acc - wrong)
+function scoreTest(str, right, omit, wrong){
+    return str.map(e => e === 0 ? right : e === 1 ? omit : -wrong).reduce((acc, c)=> acc + c)
+}
+
+// My Answer array methods refactored one liner arrow fn
+const scoreTest = (str, right, omit, wrong) => str.map(e => e === 0 ? right : e === 1 ? omit : -wrong).reduce((acc, c)=> acc + c)
 
 console.log(scoreTest([0, 0, 0, 0, 2, 1, 0], 2, 0, 1)) // 9
 console.log(scoreTest([0, 1, 0, 0, 2, 1, 0, 2, 2, 1], 3, -1, 2)) // 3
+
+// Best Practices
+// declaring an array of the inputs and referencing in a .reduce() without using an arrow fn
+function scoreTest(str, right, omit, wrong){
+    var grades = [right, omit, -wrong];
+    return str.reduce(function(sum, score) {
+        return sum + grades[score];
+    }, 0);
+}
+
+// Most Clever
+// using spread operator to create an array of the input vals of right omit and wrong inside of .reduce()
+const scoreTest = (str, ...vals) => str.reduce((a, v) => a + vals[v] * [1,1,-1][v], 0);
+
+// using a ternary inside of a .reduce()
+const scoreTest = (arr, right, omit, wrong) => arr.reduce((acc, c) => acc + (c === 0 ? right : c === 1 ? omit : -wrong), 0)
+
+// very clever use of truthy falsy inside of a ternary
+function scoreTest(str, right, omit, wrong) {
+    return str.reduce((n, x) => n + (x > 1 ? -wrong : x ? omit : right), 0)
+}
