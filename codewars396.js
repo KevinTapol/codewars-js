@@ -31,15 +31,39 @@ because: 4*3 + 3*-1 - 3*2 = 3
 Pseudocode:
     declare a variable sum and set it equal to 0
     iterate through the input array
-        if the current element is 0 then correct then add the value of the 2nd input to sum
-        if 1 then then add the value of the 3rd input to sum
-        if 2  then subtract the value of the 4th input from sum
+        if the current element is 0 then correct then add the value of the 2nd input right to sum
+        if 1 then then add the value of the 3rd input omit to sum
+        if 2  then subtract the value of the 4th input wrong from sum
     return sum
 
 */
 
 // My Answer
-//returns the test score
+// function scoreTest(str, right, omit, wrong){
+//     let sum = 0
+//     for(let i = 0; i < str.length; i++){
+//         if(str[i] === 0){
+//             sum += right
+//         }
+//         if(str[i] === 1){
+//             sum += omit
+//         }
+//         if(str[i] === 2){
+//             sum -= wrong
+//         }
+//     }return sum
+// }
+
+// My Answer brute force for loop refactored
 function scoreTest(str, right, omit, wrong){
-    
+    let sum = 0
+    for(let i = 0; i < str.length; i++){
+        str[i] === 0 ? sum += right : str[i] === 1 ? sum += omit : sum -= wrong
+    }return sum
 }
+
+// My Answer refactored
+// const scoreTest = (str, right, omit, wrong) => str.reduce((acc, c) => c === 0 ? acc + right : c === 1 ? acc + omit : acc - wrong)
+
+console.log(scoreTest([0, 0, 0, 0, 2, 1, 0], 2, 0, 1)) // 9
+console.log(scoreTest([0, 1, 0, 0, 2, 1, 0, 2, 2, 1], 3, -1, 2)) // 3
