@@ -61,3 +61,70 @@ function bingo(ticket, win){
 }
 
 console.log(bingo([['ABC', 65], ['HGR', 74], ['BYHT', 74]], 2)) //
+
+// Best Practices and Most Clever
+// very clever to create a filtered version of only elements that char codes does match and compare the new array length to win scenario
+function bingo(ticket, win){
+    if(ticket.filter(a => a[0].split('').some(b => b.charCodeAt(0) == a[1])).length >= win)
+    {
+      return "Winner!";
+    }
+    return "Loser!";
+}
+
+// clever .forEach() with a .includes(String.fromCharCode())
+function bingo(ticket, win){
+    var count = 0;
+    
+    ticket.forEach(game => {
+      if (game[0].includes(String.fromCharCode(game[1]))) {
+        count++;
+      }
+    });
+    
+    return (count >= win) ? "Winner!" : "Loser!";
+}
+
+// very similar to my for loop but using a different conditional with a break
+function bingo(ticket, win){
+    let miniWins = 0
+    for (let i = 0; i < ticket.length; i++) {
+      for( let j = 0; j < ticket[i][0].length; j++) {
+        if (ticket[i][0][j].charCodeAt() === ticket[i][1]) {
+            miniWins++
+            break
+          }
+      }
+    }
+    if (miniWins >= win) return 'Winner!';
+    return 'Loser!'
+}
+
+// using a separate function to check if the string contains matching char codes, using a .reduce() to sum the wins and a ternary return
+const miniwin = pair => 
+    pair[0].indexOf(String.fromCharCode(pair[1])) !== -1
+  
+  const bingo = (ticket, win) =>
+    ticket.map(miniwin).reduce((a, b) => a + b) >= win
+    ? 'Winner!'
+    : 'Loser!'
+
+//  using a single .reduce() with a ternary
+const bingo = (ticket, win) => ticket.reduce((pre, [str, num]) => pre + [...str].some(val => val.charCodeAt() === num), 0) < win ? `Loser!` : `Winner!`;
+
+// using .find()
+function bingo(ticket, win){
+    let count=0;
+     for(let i in ticket){
+       let word = ticket[i][0];
+       let mini = ticket[i][1];
+       count+=[...word].find(e=>e.charCodeAt()==mini)?1:0;  
+     }
+     
+     if(count>=win){
+       return "Winner!"
+     }
+     
+     return "Loser!"
+   
+   }
