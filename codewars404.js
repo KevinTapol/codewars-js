@@ -34,12 +34,34 @@ Pseudocode:
 */
 
 // My Answer
+// function getLengthOfMissingArray(matrix) {
+//     console.log(matrix)
+//     if(!matrix){
+//       return 0
+//     }
+//     matrix.sort((a, b) => a.length - b.length)
+//     for(let i = 0; i < matrix.length -1; i++){
+        
+//         if(matrix[i].length + 1 != matrix[i + 1].length){
+//             return matrix[i].length + 1
+//         } 
+//     } return 0
+// }
+
+// conflicting instructions for what to return for null cases
 function getLengthOfMissingArray(matrix) {
     console.log(matrix)
+    console.log('next')
     if(!matrix){
       return 0
     }
     matrix.sort((a, b) => a.length - b.length)
+    
+    // if(Array.isArray(matrix[0]) && matrix[0].length === 0){
+    //   return 0
+    // }
+  
+  
     for(let i = 0; i < matrix.length -1; i++){
         
         if(matrix[i].length + 1 != matrix[i + 1].length){
@@ -48,4 +70,6 @@ function getLengthOfMissingArray(matrix) {
     } return 0
 }
 
-console.log(getLengthOfMissingArray([ [ 1, 2 ], [ 4, 5, 1, 1 ], [ 1 ], [ 5, 6, 7, 8, 9 ]])) // 3
+// console.log(getLengthOfMissingArray([ [ 1, 2 ], [ 4, 5, 1, 1 ], [ 1 ], [ 5, 6, 7, 8, 9 ]])) // 3
+let r = []
+console.log(Array.isArray(r))
