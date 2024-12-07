@@ -57,9 +57,9 @@ function getLengthOfMissingArray(matrix) {
     }
     matrix.sort((a, b) => a.length - b.length)
     
-    // if(Array.isArray(matrix[0]) && matrix[0].length === 0){
-    //   return 0
-    // }
+    if(Array.isArray(matrix[0]) && matrix[0].length === 0){
+      return 0
+    }
   
   
     for(let i = 0; i < matrix.length -1; i++){
