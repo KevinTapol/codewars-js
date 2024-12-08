@@ -49,10 +49,27 @@ Pseudocode:
 // }
 
 // conflicting instructions for what to return for null cases
+/*
+failing on the following edge cases
+[]
+
+null
+
+[ [], [ 1, 2, 2 ] ]
+
+[ [ 1, 2, 2 ], null ]
+
+*/
 function getLengthOfMissingArray(matrix) {
     console.log(matrix)
-    console.log('next')
+//     console.log('next')
     if(!matrix){
+      return 0
+    }
+    if(matrix === null){
+      return 0
+    }
+    if(matrix.length === 0){
       return 0
     }
     matrix.sort((a, b) => a.length - b.length)
