@@ -62,7 +62,7 @@ null
 */
 function getLengthOfMissingArray(matrix) {
     console.log(matrix)
-//     console.log('next')
+    console.log('next')
     if(!matrix){
       return 0
     }
