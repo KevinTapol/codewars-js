@@ -56,3 +56,51 @@ console.log(getLengthOfMissingArray([ [ 1, 2 ], [ 4, 5, 1, 1 ], [ 1 ], [ 5, 6, 7
 console.log(getLengthOfMissingArray([])) // 0
 console.log(getLengthOfMissingArray([ null ])) // 0
 console.log(getLengthOfMissingArray(null)) // 0
+
+// Best Practices
+// This does a check for length of null or zero and .sort then .includes() to return 0 for all cases of if the input is null empty or if a 1D array includes null or 0. Then does the iteration via for loop for cases to return the length of the missing element.
+function getLengthOfMissingArray(arrayOfArrays) {
+  const lengths = (arrayOfArrays || [])
+    .map(a => a ? a.length : 0)
+    .sort((a, b) => a - b)
+  
+  if (lengths.includes(0)) {
+    return 0
+  }
+
+  for (let i = 0; i < lengths.length - 1; i++) {
+    if (lengths[i] + 1 !== lengths[i + 1]) {
+      return lengths[i] + 1
+    }
+  }
+
+  return 0
+}
+
+// Most Clever
+function getLengthOfMissingArray(arr) {
+  return !arr||(ar=arr.map((x,i)=>x?x.length:0).sort((a,b)=>a-b)).indexOf(0)>-1
+         ?0:ar.filter((x,i)=>x!=i+ar[0]).concat([1])[0]-1
+}
+
+// one liner arrow fn
+const getLengthOfMissingArray = arrayOfArrays =>
+  (arr => arr.length && arr.every(Boolean) ? arr.find((val, idx) => val !== arr[++idx] - 1) + 1 : 0)
+  (Array.isArray(arrayOfArrays) && arrayOfArrays.map(val => val && val.length || 0).sort((a, b) => a - b) || []);
+
+// one liner arrow fn with a .map().includes().sort().reduce()
+const getLengthOfMissingArray = a => a ? (a = a.map(e => e ? e.length : 0)).includes(0) ? 0 : a
+  .sort((x, y) => x - y)
+  .reduce((r, e, i, a) => r ? r : (e + 1) === a[i + 1] ? 0 : e + 1, 0) : 0;
+
+// one liner arrow fn .map().min.reduce()
+getLengthOfMissingArray=a=>a?(l=a.map(a=>a?a.length:0),m=Math.min(...l)|0,m?l.reduce((x,n,i)=>x^n-m^i+1,0)+m:0):0
+
+// one liner using .map().sort().find()
+const getLengthOfMissingArray = matrix =>
+  !Array.isArray(matrix) || !matrix[0] || matrix.some(x => !Array.isArray(x) || !x.length)
+    ? 0
+    : matrix
+        .map(x => x.length)
+        .sort((x, y) => x - y)
+        .find((x, i, list) => (x + 1 < list[i + 1])) + 1;
