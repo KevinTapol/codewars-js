@@ -35,8 +35,10 @@ function dashatize(num) {
     result += arr[0]
     for(let i = 1; i < arr.length; i++){
  
-        if(result[result.length -1] === '-' && arr[i] % 2 != 0){
+        // if(result[result.length -1] === '-' && arr[i] % 2 != 0){
+        if(arr[i - 1] % 2 != 0 && arr[i] % 2 != 0){
             result += arr[i]
+            result += '-'
         }
         if(arr[i] % 2 != 0){
             result += '-'
@@ -47,8 +49,11 @@ function dashatize(num) {
         }
         
     }
-
-    return result
+    if(result[result.length - 1] === '-'){
+        return result.slice(0, result.length - 1)
+    } else {
+        return result
+    }
 }
 
 console.log(dashatize(-28369)) // "28-3-6-9"
