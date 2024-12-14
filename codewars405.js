@@ -36,6 +36,9 @@ function dashatize(num) {
     for(let i = 1; i < arr.length; i++){
  
         // if(result[result.length -1] === '-' && arr[i] % 2 != 0){
+        /*
+            multiple conditionals if last element on result string is - and current element is odd then do not add the leading hash, add the odd digit and trailing hash
+        */
         if(arr[i - 1] % 2 != 0 && arr[i] % 2 != 0){
             result += arr[i]
             result += '-'
