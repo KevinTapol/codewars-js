@@ -64,12 +64,13 @@ function getVillainName(birthday){
     const d = ["Mustache","Pickle","Hood Ornament","Raisin","Recycling Bin","Potato","Tomato","House Cat","Teaspoon","Laundry Basket"];
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     let answer = "The "
-    birthday.toString()
-    let inputMonth = birthday.slice(0, birthday.indexOf(' '))
+    const inputMonth = birthday.getMonth()
+    // let inputMonth = birthday.slice(0, birthday.indexOf(' '))
     let month = months.indexOf(inputMonth)
     answer += m[month] + ' '
-    const num = Number(birthday[birthday.length -1])
-    answer += d[num]
+    // const day = Number(birthday[birthday.length -1])
+    const day = birthday.getDate().slice(-1)
+    answer += d[day]
     return answer
 }
 
