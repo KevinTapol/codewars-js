@@ -59,6 +59,7 @@ Pseudocode:
 
 // failed due to inputs are date object like 2001-05-03T00:00:00.000Z must use methods input.getMonth() integer month and input.getDate() integer day
 // My Answer
+// consider the use of other get methods or build one myself using date object input stringified or JSON
 function getVillainName(birthday){
     const m = ["Evil","Vile","Cruel","Trashy","Despicable","Embarrassing","Disreputable","Atrocious","Twirling","Orange","Terrifying","Awkward"];
     const d = ["Mustache","Pickle","Hood Ornament","Raisin","Recycling Bin","Potato","Tomato","House Cat","Teaspoon","Laundry Basket"];
