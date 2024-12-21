@@ -57,27 +57,68 @@ Pseudocode:
 
 */
 
-// failed due to inputs are date object like 2001-05-03T00:00:00.000Z must use methods input.getMonth() integer month and input.getDate() integer day
-// My Answer
-// consider the use of other get methods or build one myself using date object input stringified or JSON
+// My Answer using with string input and date object commented out
+// The input is a date object like 2001-05-03T00:00:00.000Z requiring .getMonth() and .getDate() methods
 function getVillainName(birthday){
     const m = ["Evil","Vile","Cruel","Trashy","Despicable","Embarrassing","Disreputable","Atrocious","Twirling","Orange","Terrifying","Awkward"];
     const d = ["Mustache","Pickle","Hood Ornament","Raisin","Recycling Bin","Potato","Tomato","House Cat","Teaspoon","Laundry Basket"];
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    
+    // methods for date object
+    // const month = birthday.getMonth()
+    // const day = Number(birthday.getDate().toString().slice(-1))
+
+    // methods if the input was a string
+    const month = birthday.slice(0, birthday.indexOf(' '))
+    const day = Number(birthday[birthday.length -1])
+    const marr = months.indexOf(month)
+    
     let answer = "The "
-    const inputMonth = birthday.getMonth() -1
-    // let inputMonth = birthday.slice(0, birthday.indexOf(' '))
-    let month = months.indexOf(inputMonth)
-    answer += m[month] + ' '
-    // const day = Number(birthday[birthday.length -1])
-    const day = Number(birthday.getDate().toString().slice(-1))
+    
+    // if input is string concat
+    answer += m[marr] + ' '
+    // if the input is a date object
+    // answer += m[month] + ' '
     answer += d[day]
+
     return answer
 }
 
+// My Answer if the input is a string
+function getVillainName(birthday){
+    const m = ["Evil","Vile","Cruel","Trashy","Despicable","Embarrassing","Disreputable","Atrocious","Twirling","Orange","Terrifying","Awkward"];
+    const d = ["Mustache","Pickle","Hood Ornament","Raisin","Recycling Bin","Potato","Tomato","House Cat","Teaspoon","Laundry Basket"];
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+    const month = birthday.slice(0, birthday.indexOf(' '))
+    const day = Number(birthday[birthday.length -1])
+    const marr = months.indexOf(month)
+    
+    return "The ".concat(m[marr] + ' ').concat(d[day])
+}
+
+// My Answer using date object methods
+function getVillainName(birthday){
+    const m = ["Evil","Vile","Cruel","Trashy","Despicable","Embarrassing","Disreputable","Atrocious","Twirling","Orange","Terrifying","Awkward"];
+    const d = ["Mustache","Pickle","Hood Ornament","Raisin","Recycling Bin","Potato","Tomato","House Cat","Teaspoon","Laundry Basket"];
+
+    const month = birthday.getMonth()
+    const day = Number(birthday.getDate().toString().slice(-1))
+
+    let answer = "The "
+    
+    answer += m[month] + ' '
+    answer += d[day]
+
+    return answer
+}
+
+// My Answer using date object methods refactored
+function getVillainName(birthday){
+    const m = ["Evil","Vile","Cruel","Trashy","Despicable","Embarrassing","Disreputable","Atrocious","Twirling","Orange","Terrifying","Awkward"];
+    const d = ["Mustache","Pickle","Hood Ornament","Raisin","Recycling Bin","Potato","Tomato","House Cat","Teaspoon","Laundry Basket"];
+
+    return "The ".concat(m[birthday.getMonth()] + ' ').concat(d[Number(birthday.getDate().toString().slice(-1))])
+}
+
 console.log(getVillainName("May 3")) // "The Despicable Raisin"
-
-// let day = 13
-// let d = Number(day.toString().slice(-1))
-// console.log(d)
-
