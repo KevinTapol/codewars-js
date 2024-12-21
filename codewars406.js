@@ -122,3 +122,58 @@ function getVillainName(birthday){
 }
 
 console.log(getVillainName("May 3")) // "The Despicable Raisin"
+
+// Best Practices and Most Clever
+// same idea as my answer but using % 10 to grab the last digit from the day
+function getVillainName(birthday){
+    firstNames = ["The Evil", "The Vile", "The Cruel", "The Trashy", "The Despicable", "The Embarrassing", "The Disreputable", "The Atrocious", "The Twirling", "The Orange", "The Terrifying", "The Awkward"];
+    lastNames = ["Mustache", "Pickle", "Hood Ornament", "Raisin", "Recycling Bin", "Potato", "Tomato", "House Cat", "Teaspoon", "Laundry Basket"];
+    return firstNames[birthday.getMonth()] + ' ' + lastNames[birthday.getDate() % 10]
+}
+
+// Same idea but separating the functions for first name and last name
+function getVillainName(birthday){
+    return getFirstName(birthday) + " " + getLastName(birthday);
+  }
+  
+  function getFirstName(birthday) {
+    var firstNames = ["The Evil", "The Vile", "The Cruel", 
+                      "The Trashy", "The Despicable", "The Embarrassing", 
+                      "The Disreputable", "The Atrocious", "The Twirling",
+                      "The Orange", "The Terrifying", "The Awkward"]
+  
+    return firstNames[birthday.getMonth()];
+  }
+  
+  function getLastName(birthday) {
+    var lastNames = ["Mustache", "Pickle", "Hood Ornament",
+                     "Raisin", "Recycling Bin", "Potato",
+                     "Tomato", "House Cat", "Teaspoon", "Laundry Basket"]
+                   
+    var digit = birthday.getDate()%10;
+    
+    return lastNames[digit];
+}
+
+// using template literals for white space and variables `${var}` instead of concatenation
+function getVillainName(birthday){
+    const m = ["Evil","Vile","Cruel","Trashy","Despicable","Embarrassing","Disreputable","Atrocious","Twirling","Orange","Terrifying","Awkward"];
+    const d = ["Mustache","Pickle","Hood Ornament","Raisin","Recycling Bin","Potato","Tomato","House Cat","Teaspoon","Laundry Basket"];
+   
+    return `The ${m[birthday.getMonth()]} ${d[birthday.getDate()%10]}`
+  }
+
+// very clever using the input as an index directly on the the arrays and substring(-1) for last digit
+function getVillainName(birthday){
+    return "The " + 
+    ["Evil","Vile","Cruel","Trashy","Despicable","Embarrassing","Disreputable","Atrocious","Twirling","Orange","Terrifying","Awkward"]
+    [birthday.getMonth()] + ' ' + 
+    ["Mustache","Pickle","Hood Ornament","Raisin","Recycling Bin","Potato","Tomato","House Cat","Teaspoon","Laundry Basket"]
+    [(birthday.getDate()+'').substr(-1)];
+}
+
+// one liner arrow fn
+const getVillainName = birthday =>
+    ((month, day) => `${month[birthday.getMonth()]} ${day[birthday.getDate() % 10]}`)
+    ([`The Evil`, `The Vile`, `The Cruel`, `The Trashy`, `The Despicable`, `The Embarrassing`, `The Disreputable`, `The Atrocious`, `The Twirling`, `The Orange`, `The Terrifying`, `The Awkward`],
+     [`Mustache`, `Pickle`, `Hood Ornament`, `Raisin`, `Recycling Bin`, `Potato`, `Tomato`, `House Cat`, `Teaspoon`, `Laundry Basket`]);
