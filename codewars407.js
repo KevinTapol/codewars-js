@@ -58,3 +58,34 @@ function isAllPossibilities(x){
 
 console.log(isAllPossibilities([1,2,0,3])) // true 
 console.log(isAllPossibilities([0,1,2,2,3])) // false
+
+// Best Practices and Most Clever
+function isAllPossibilities(x){
+	return x.length > 0 ? x.every((a,i) => x.includes(i)) : false;
+}
+
+// clever using implicit boolean return
+function isAllPossibilities(a){
+    return a.length > 0 && a.every((x,i) => a.includes(i));
+}
+
+// clever use to set up an accumulative variable to compare for boolean return
+function isAllPossibilities(x){
+    let tally = 0;
+    if (x.length >= 1) { 
+      for (let i = 0; i < x.length; i++) {
+        if (x.includes(i)){
+        tally++;
+        }
+      }
+      return tally === x.length 
+    } else return false;
+}
+
+// one liner arrow fn using .reduce()
+const isAllPossibilities = x => !!x.length && x.reduce((acc, val) => (acc[val]++, acc), Array(x.length).fill(0)).every(Boolean);
+
+// clever using Set to create an array of unique elements
+function isAllPossibilities(arr) {
+    return arr.length > 0 && (set = new Set(arr), arr.every((_, i) => set.has(i)));
+}
