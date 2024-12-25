@@ -89,3 +89,11 @@ const isAllPossibilities = x => !!x.length && x.reduce((acc, val) => (acc[val]++
 function isAllPossibilities(arr) {
     return arr.length > 0 && (set = new Set(arr), arr.every((_, i) => set.has(i)));
 }
+
+// clever .every((element, index, array) => )
+function isAllPossibilities(x){
+    return x.every((_,i,arr)=>arr.includes(i))
+}
+
+// one liner arrow fn .every()
+const isAllPossibilities = x => x.every((_, i) => x.includes(i))
