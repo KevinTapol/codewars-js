@@ -80,3 +80,41 @@ function pendulum(values) {
 }
 
 console.log(pendulum([6, 6, 8 ,5 ,10])) // [10, 6, 5, 6, 8]
+
+// Best Practices
+function pendulum(values) {
+
+    let sort = values.slice().sort((a, b) => a - b)
+    ,  parts = { left: [], right: [] };
+    
+    for (let i = 0; i < sort.length; i++) 
+      parts[i % 2 ? 'right' : 'left'].push(sort[i]);
+  
+    return parts.left.reverse().concat(parts.right);
+    
+}
+
+// Most Clever
+// using .slice() before .sort() protects the integrity of the input array from being sorted
+const pendulum = values => values.sort((a, b) => a - b).reduce((pre, val) => pre.length % 2 ? [...pre, val] : [val, ...pre], []);
+
+// Similar to my answer but using .pop() 
+function pendulum(values, l = values.length) {
+    values.sort((min, max)=> max-min)
+    const arr = [];
+    for (let i=0; i < l; i++){
+      if (i % 2 === 0){ 
+        arr.unshift(values.pop()) 
+      }else{
+        arr.push(values.pop())
+      }
+    }
+    return arr
+}
+
+// using .forEach() instead of a for loop
+function pendulum(a) {
+    let list = [], arr = [];
+    a.sort((b, c) => b - c).forEach((e, i) => (i % 2 ? arr : list).push(e));
+    return list.reverse().concat(arr);
+}
