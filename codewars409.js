@@ -42,6 +42,15 @@ function replaceAll(seq, find, replace) {
 // console.log(replaceAll([1,2,2], 1, 2)) // [2,2,2]
 // console.log(replaceAll([ 1, 1, 2 ], 1, 2)) // [ 2, 2, 2 ]
 console.log(replaceAll('Hello World', 'o', '0')) // 'Hell0 W0rld'
+console.log(replaceAll([
+    12,  7,  9,  2,  8,  5, 15,  6,  9, 16,  2, 12,
+     3, 19,  1,  8, 18, 12,  6, 12, 14,  2, 11, 10,
+     2, 13,  2, 11, 11,  3,  1, 17, 19, 20,  4,  1,
+    10, 10, 11, 20,  9, 10,  6, 13, 10, 11, 12,  4,
+     5,  9,  5,  4, 11, 11, 17,  5,  1,  5, 15,  3,
+    16, 18,  8,  4,  9, 15, 16, 15,  3,  6, 19, 17,
+    12,  1,  5, 17,  6,  9,  4,  8, 18, 11,  1
+  ], 9, 5)) // 'Hell0 W0rld'
 
 /*
 Test if each digit existing is the correct answer or maintain double digit integer elements
@@ -57,5 +66,18 @@ Consider converting the entire first input into a string then use regex to repla
 ]
 9
 5
+
+if the codewars is maintaining data integrity for integers then the correct answer should be
+[
+  12,  7,  5,  2,  8,  5, 15,  6,  5, 16,  2, 12,
+   3, 19,  1,  8, 18, 12,  6, 12, 14,  2, 11, 10,
+   2, 13,  2, 11, 11,  3,  1, 17, 19, 20,  4,  1,
+  10, 10, 11, 20,  5, 10,  6, 13, 10, 11, 12,  4,
+   5,  5,  5,  4, 11, 11, 17,  5,  1,  5, 15,  3,
+  16, 18,  8,  4,  5, 15, 16, 15,  3,  6, 19, 17,
+  12,  1,  5, 17,  6,  5,  4,  8, 18, 11,  1
+]
+
+but if the codewars is not maintaining data integrity by converting everything into strings example '17' target '1' and replace with '3' answer should be '37' and not 17
 
 */
