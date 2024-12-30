@@ -79,5 +79,5 @@ if the codewars is maintaining data integrity for integers then the correct answ
 ]
 
 but if the codewars is not maintaining data integrity by converting everything into strings example '17' target '1' and replace with '3' answer should be '37' and not 17
-
+convert the entire input into a string then use regex with replace to replace all strings target of 2nd input with the 3rd input
 */
