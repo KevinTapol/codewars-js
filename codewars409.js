@@ -16,68 +16,38 @@ Examples:
 Pseudocode:
     create a shallow copy array of the array seq and if the current element is equal to the 2nd input find then replace it with the 3rd input replace else return the current element
 
-    NOTE 1st input will not always be an array and can be a string
-    using regex to replace 'Hello World' o 0
+    1st issue reported was that 1st input that will always be an array can in fact be a string of chars, words, special characters and/or whitespace
+
+    2nd issue is that if the 1st input is a string then the 3rd input replacing the targeted input must be converted to type string as well which is why the following regex answer does not work as it attempts to maintain the data integrity of the 3rd input
+
+    Searching for the 3rd issue of which maybe replacing specific digits from multiple digit elements ie 17 replace 1 with 2 answer 27.
+
+    function replaceAll(seq, find, replace) {
+        if(typeof seq === "string"){
+            const regexVar = new RegExp(find, 'g')
+            return seq.replace(regexVar, replace)
+
+        //return seq.replace(new RegExp(find, 'g'), replace)
+    }
+
+    What this does it allow variable names to be used inside regex in the targeted regex parameter as shown in the example above with the variable named find.
 
 */
 
-// My Answer
-// 3 issues reported found 1 being the inputs may be strings instead of arrays. Searching for the other 2 issues of which maybe replacing specific digits from multiple digit elements ie 17 replace 1 with 2 answer 27 not sure though
+// My Answer 
 function replaceAll(seq, find, replace) {
-    // console.log(seq)
-    // console.log(find)
-    // console.log(replace)
-    // console.log(' ')
     if(typeof seq === "string"){
-        // let regex = new RegExp(find, 'g')
-        return seq.replace(new RegExp(find, 'g'), replace)
+        return seq.split('').map(e => e === find ? replace : e).join('')
     }
     if(Array.isArray(seq)){
         return seq.map(e => e === find ? replace : e)
-    }
-    
+    }  
 }
 
-// console.log(replaceAll([], 1, 2)) // []
-// console.log(replaceAll([1,2,2], 1, 2)) // [2,2,2]
-// console.log(replaceAll([ 1, 1, 2 ], 1, 2)) // [ 2, 2, 2 ]
-console.log(replaceAll('Hello World', 'o', '0')) // 'Hell0 W0rld'
-console.log(replaceAll([
-    12,  7,  9,  2,  8,  5, 15,  6,  9, 16,  2, 12,
-     3, 19,  1,  8, 18, 12,  6, 12, 14,  2, 11, 10,
-     2, 13,  2, 11, 11,  3,  1, 17, 19, 20,  4,  1,
-    10, 10, 11, 20,  9, 10,  6, 13, 10, 11, 12,  4,
-     5,  9,  5,  4, 11, 11, 17,  5,  1,  5, 15,  3,
-    16, 18,  8,  4,  9, 15, 16, 15,  3,  6, 19, 17,
-    12,  1,  5, 17,  6,  9,  4,  8, 18, 11,  1
-  ], 9, 5)) // 'Hell0 W0rld'
+// My Answer refactored one liner arrow fn ternary conditional
+const replaceAll = (seq, find, replace) => typeof seq === "string" ? seq.split('').map(e => e === find ? replace : e).join('') : seq.map(e => e === find ? replace : e)
 
-/*
-Test if each digit existing is the correct answer or maintain double digit integer elements
-Consider converting the entire first input into a string then use regex to replace every instance like 12 replace 1 with 3 and get 32 or maintain 12?
-[
-  12,  7,  9,  2,  8,  5, 15,  6,  9, 16,  2, 12,
-   3, 19,  1,  8, 18, 12,  6, 12, 14,  2, 11, 10,
-   2, 13,  2, 11, 11,  3,  1, 17, 19, 20,  4,  1,
-  10, 10, 11, 20,  9, 10,  6, 13, 10, 11, 12,  4,
-   5,  9,  5,  4, 11, 11, 17,  5,  1,  5, 15,  3,
-  16, 18,  8,  4,  9, 15, 16, 15,  3,  6, 19, 17,
-  12,  1,  5, 17,  6,  9,  4,  8, 18, 11,  1
-]
-9
-5
-
-if the codewars is maintaining data integrity for integers then the correct answer should be
-[
-  12,  7,  5,  2,  8,  5, 15,  6,  5, 16,  2, 12,
-   3, 19,  1,  8, 18, 12,  6, 12, 14,  2, 11, 10,
-   2, 13,  2, 11, 11,  3,  1, 17, 19, 20,  4,  1,
-  10, 10, 11, 20,  5, 10,  6, 13, 10, 11, 12,  4,
-   5,  5,  5,  4, 11, 11, 17,  5,  1,  5, 15,  3,
-  16, 18,  8,  4,  5, 15, 16, 15,  3,  6, 19, 17,
-  12,  1,  5, 17,  6,  5,  4,  8, 18, 11,  1
-]
-
-but if the codewars is not maintaining data integrity by converting everything into strings example '17' target '1' and replace with '3' answer should be '37' and not 17
-convert the entire input into a string then use regex with replace to replace all strings target of 2nd input with the 3rd input
-*/
+console.log(replaceAll([], 1, 2)) // []
+console.log(replaceAll([1,2,2], 1, 2)) // [2,2,2]
+console.log(replaceAll([ 1, 1, 2 ], 1, 2)) // [ 2, 2, 2 ]
+console.log(replaceAll('Hello World', 'o', 0)) // 'Hell0 W0rld'
