@@ -35,17 +35,41 @@ Pseudocode:
 */
 
 // My Answer 
-function replaceAll(seq, find, replace) {
+// function replaceAll(seq, find, replace) {
+//     if(typeof seq === "string"){
+//         return seq.split('').map(e => e === find ? replace : e).join('')
+//     }
+//     if(Array.isArray(seq)){
+//         return seq.map(e => e === find ? replace : e)
+//     }  
+// }
+
+// My Answer refactoring out the .map() for dry code
+// function replaceAll(seq, find, replace) {
+//     const toArr = x => x.map(e => e === find ? replace : e)
+//     if(typeof seq === "string"){
+//         return toArr(seq.split('')).join('')
+//     }
+//     if(Array.isArray(seq)){
+//         return toArr(seq)
+//     }  
+// }
+
+// My Answer refactoring the toArr into default parameters
+function replaceAll(seq, find, replace, toArr = x => x.map(e => e === find ? replace : e)) {
     if(typeof seq === "string"){
-        return seq.split('').map(e => e === find ? replace : e).join('')
+        return toArr(seq.split('')).join('')
     }
     if(Array.isArray(seq)){
-        return seq.map(e => e === find ? replace : e)
+        return toArr(seq)
     }  
 }
 
-// My Answer refactored one liner arrow fn ternary conditional
+// My Answer one liner arrow fn
 const replaceAll = (seq, find, replace) => typeof seq === "string" ? seq.split('').map(e => e === find ? replace : e).join('') : seq.map(e => e === find ? replace : e)
+
+// My Answer refactored one liner arrow fn ternary conditional with default fn in params
+const replaceAll = (seq, find, replace, toArr = x => x.map(e => e === find ? replace : e)) => typeof seq === "string" ? toArr(seq.split('')).join('') : toArr(seq)
 
 console.log(replaceAll([], 1, 2)) // []
 console.log(replaceAll([1,2,2], 1, 2)) // [2,2,2]
