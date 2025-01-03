@@ -34,26 +34,26 @@ Pseudocode:
 
 */
 
-// My Answer 
-// function replaceAll(seq, find, replace) {
-//     if(typeof seq === "string"){
-//         return seq.split('').map(e => e === find ? replace : e).join('')
-//     }
-//     if(Array.isArray(seq)){
-//         return seq.map(e => e === find ? replace : e)
-//     }  
-// }
+// My Answer conditional returns based on type of 1st input being a string or an array
+function replaceAll(seq, find, replace) {
+    if(typeof seq === "string"){
+        return seq.split('').map(e => e === find ? replace : e).join('')
+    }
+    if(Array.isArray(seq)){
+        return seq.map(e => e === find ? replace : e)
+    }  
+}
 
 // My Answer refactoring out the .map() for dry code
-// function replaceAll(seq, find, replace) {
-//     const toArr = x => x.map(e => e === find ? replace : e)
-//     if(typeof seq === "string"){
-//         return toArr(seq.split('')).join('')
-//     }
-//     if(Array.isArray(seq)){
-//         return toArr(seq)
-//     }  
-// }
+function replaceAll(seq, find, replace) {
+    const toArr = x => x.map(e => e === find ? replace : e)
+    if(typeof seq === "string"){
+        return toArr(seq.split('')).join('')
+    }
+    if(Array.isArray(seq)){
+        return toArr(seq)
+    }  
+}
 
 // My Answer refactoring the toArr into default parameters
 function replaceAll(seq, find, replace, toArr = x => x.map(e => e === find ? replace : e)) {
