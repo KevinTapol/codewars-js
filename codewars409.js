@@ -75,3 +75,41 @@ console.log(replaceAll([], 1, 2)) // []
 console.log(replaceAll([1,2,2], 1, 2)) // [2,2,2]
 console.log(replaceAll([ 1, 1, 2 ], 1, 2)) // [ 2, 2, 2 ]
 console.log(replaceAll('Hello World', 'o', 0)) // 'Hell0 W0rld'
+
+// Best Practices and Most Clever
+// very clever to split on the targeted variable find and join on what to replace it with
+function replaceAll(seq, find, replace) {
+    return Array.isArray(seq) ? seq.map(x=>x==find?replace:x) : seq.split(find).join(replace)
+}
+
+// Similar to my conditional statements but not using curly brackets for the return conditional statement
+function replaceAll(seq, find, replace) {
+    if (typeof seq === 'string') return seq.split('').map(x => x===find ? replace : x).join('');
+    return seq.map(x => x===find ? replace : x);
+}
+
+// Brute force for loop pushing to an empty array
+function replaceAll(seq, find, replace) {
+    var res = [];
+      for (var i=0; i<seq.length; i++){
+        if (seq[i] == find) {
+          res.push(replace);
+        } else {
+         res.push(seq[i]);
+        }
+      }
+      if (typeof(seq) == 'string') {
+        return res.join('');
+      }  
+      return res; 
+}
+
+// one liner arrow fn refactoring out the .map() prefixed by a conditional based on the 1st input being an array or not into a string with template literals
+const replaceAll = (seq, find, replace) =>
+    (val => Array.isArray(seq) ? val : val.join(``))
+    ([...seq].map(val => val === find ? replace : val));
+
+// same idea as above but easier to read code
+function replaceAll(seq, find, replace) {
+    return (Array.isArray(seq)  ? seq : seq.split('')).map(i => i === find ? replace : i)[Array.isArray(seq) ? 'valueOf' : 'join']('');
+}
