@@ -31,4 +31,9 @@ function extraPerfect(n){
     }return answer
 }
 
+// My Answer using array methods
+function extraPerfect(n){
+    return Array.from({length: n}, (e, i) => i + 1).filter(e => e % 2 != 0)
+}
+
 console.log(extraPerfect(7)) // [1,3,5,7]
