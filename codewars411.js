@@ -50,4 +50,37 @@ function alternateSqSum(arr){
     }return sum
 }
 
+// My Answer refactored
+function alternateSqSum(arr){
+    let sum = 0
+    for(let i = 0; i < arr.length; i++){
+        i % 2 != 0 ? sum += (arr[i]*arr[i]) : sum += arr[i]
+    }return sum
+}
+
+// My Answer using array methods
+function alternateSqSum(arr){
+    return arr.reduce((acc, c, i) => i % 2 != 0 ? acc + arr[i]*arr[i] : acc + arr[i], 0)
+}
+
+// My Answer using array methods one liner arrow fn
+const alternateSqSum = arr =>  arr.reduce((acc, c, i) => i % 2 != 0 ? acc + arr[i]*arr[i] : acc + arr[i], 0)
+
+
 console.log(alternateSqSum([1,2,3,4,5])) // 29
+
+// Best Practices and Most Clever
+// similar to my .reduce() answer but using Math.pow(e, 2) instead of e*e
+function alternateSqSum(arr){
+    return arr.reduce(function(prev, cur, index) {
+      return prev + ( index % 2 ? Math.pow(cur, 2) : cur );
+    }, 0);
+}
+
+// similar to my .reduce() but using e**2 instead of e*e
+const alternateSqSum = arr => arr.reduce((pre, val, idx) => pre + (idx % 2 ? val ** 2 : val), 0);
+
+// using .map() to create a new array of squares of odd indexes and then using .reduce()
+function alternateSqSum(arr) {
+    return arr.map((v, i) => i % 2 === 1 ? v * v : v).reduce((p, c) => p + c, 0);
+}
