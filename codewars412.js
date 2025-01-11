@@ -26,4 +26,12 @@ function matchArrays(v,r){
     return inputs.length - unique.length
 }
 
+// My Answer refactored
+function matchArrays(v,r, arr = v.concat(r)){
+    return arr.length - [...new Set(arr)].length
+}
+
+// My Answer refactored one liner arrow fn
+const matchArrays = (v,r, arr = v.concat(r)) => arr.length - [...new Set(arr)].length
+
 console.log(matchArrays(['incapsulation','OOP','array'], ['time', 'propert','paralelism','OOP'])) // 1
