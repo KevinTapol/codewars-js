@@ -62,6 +62,18 @@ function sabb(s, val, happiness){
     for(let e of s){
         if('sabbatical'.includes(e)){
             count += 1
-        }
+        } 
     }return count > 22 ? 'Sabbatical! Boom!' :'Back to your desk, boy.'
 }
+
+// My Answer array methods
+function sabb(s, val, happiness){  
+    const count = val + happiness + s.split('').filter(e => 'sabbatical'.includes(e)).length
+    return count > 22 ? 'Sabbatical! Boom!' :'Back to your desk, boy.'
+}
+
+// My Answer array methods one liner arrow fn
+const sabb = (s, v, h) => v + h + s.split('').filter(e => 'sabbatical'.includes(e)).length > 22 ? 'Sabbatical! Boom!' :'Back to your desk, boy.'
+
+console.log(sabb('Can I have a sabbatical?', 5, 5)) // 'Sabbatical! Boom!' s = 13
+console.log(sabb('Why are you shouting?', 7, 2)) // 'Back to your desk, boy.' s = 4
