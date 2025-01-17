@@ -77,3 +77,31 @@ const sabb = (s, v, h) => v + h + s.split('').filter(e => 'sabbatical'.includes(
 
 console.log(sabb('Can I have a sabbatical?', 5, 5)) // 'Sabbatical! Boom!' s = 13
 console.log(sabb('Why are you shouting?', 7, 2)) // 'Back to your desk, boy.' s = 4
+
+// Best Practices and Most Clever
+// using regex with .match() to create an array of every elements from the 1st input that is a char existing in sabbatical
+function sabb(x, val, happ) {
+    return (x.match(/[sabbatical]/gi) || []).length + val + happ > 22 ? 'Sabbatical! Boom!' : 'Back to your desk, boy.'
+}
+
+// similar to my array method answer but using [...s] to create an array of elements from the input of s
+function sabb(s, v, h){
+    let r = [...s].filter((el) => 'sabatical'.includes(el)).length;
+    return (r + v + h) > 22 ? 'Sabbatical! Boom!' : 'Back to your desk, boy.';
+}
+
+// using .forEach instead of a for loop
+function sabb(x, val, happ){
+    let pointsGathered = 0
+    
+    x.split("").forEach(element => {
+        ['s','a','b','t','i','c','l'].forEach(second => {
+        if (element == second) { ++pointsGathered } 
+      })
+    })
+    
+    return pointsGathered + val + happ > 22 ? "Sabbatical! Boom!" : "Back to your desk, boy."
+}
+
+// clever use of .reduce()
+const sabb = (x, val, happ) => x.split('').reduce((s,a)=> s + 'sabbatical'.includes(a) , 0) + val + happ > 22 ? 'Sabbatical! Boom!' :  'Back to your desk, boy.'
