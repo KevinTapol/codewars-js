@@ -20,23 +20,53 @@ Product of value and index:
 Output: 2, 3, 4, 23, 5
 
 Parameters or Edge Cases:
+  inputs will be an array of numbers
+  the array will never be null and will always contain numbers
 
 Return:
+  return the input array sorting the product of the elements and their index in ascending order but returning the elements and not the products
 
 Examples:
     [ 1, 2, 3, 4, 5 ] --> [ 1, 2, 3, 4, 5 ];    
-      
     [ 23, 2, 3, 4, 5 ] --> [ 2, 3, 4, 23, 5 ];    
-      
     [ 26, 2, 3, 4, 5 ] --> [ 2, 3, 4, 5, 26 ];    
-      
     [ 9, 5, 1, 4, 3 ] --> [ 1, 9, 5, 3, 4 ];  
 
 Pseudocode:
+  declare an empty array result
+  iterate through the input array using the starting index as 1 and not 0 
+    multiply the current element by the current index and push an array of the first element being the product and the second the element to result
+  sort the 2D array result by the elements products
+  return the sorted array as a 1D array of only the elements
 
 */
 
-// My Answer
+// My Answer brute force for loop
 function sortByValueAndIndex(array){
-  return array;
+  let result = []
+  for(let i = 0; i < array.length; i++){
+    let product = array[i] * ( i + 1)
+    result.push([product, array[i]])
+  }let matrix =  result.sort((a, b) => a[0] - b[0])
+  return matrix.map(e => e[1])
 }
+
+// My Answer refactored
+function sortByValueAndIndex(array){
+  let result = []
+  for(let i = 0; i < array.length; i++){
+    let product = array[i] * ( i + 1)
+    result.push([product, array[i]])
+  }return result.sort((a, b) => a[0] - b[0]).map(e => e[1])
+}
+
+// My Answer using array methods
+function sortByValueAndIndex(array){
+  let result = array.map((e, i) => e = [e * (i + 1), e])
+  return result.sort((a, b) => a[0] - b[0]).map(e => e[1])
+}
+
+// My Answer array methods  refactored one liner arrow fn
+const sortByValueAndIndex = (array) => array.map((e, i) => e = [e * (i + 1), e]).sort((a, b) => a[0] - b[0]).map(e => e[1])
+
+console.log(sortByValueAndIndex([ 23, 2, 3, 4, 5 ])) // [ 2, 3, 4, 23, 5 ]
