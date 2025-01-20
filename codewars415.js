@@ -70,3 +70,29 @@ function sortByValueAndIndex(array){
 const sortByValueAndIndex = (array) => array.map((e, i) => e = [e * (i + 1), e]).sort((a, b) => a[0] - b[0]).map(e => e[1])
 
 console.log(sortByValueAndIndex([ 23, 2, 3, 4, 5 ])) // [ 2, 3, 4, 23, 5 ]
+
+// Best Practices and Most Clever
+// the same as my .map() to create a 2D array .sort() to sort by product and .map() to create a 1D array of the sorted elements but they had product as the 2nd element in the 2D array
+function sortByValueAndIndex(array) {
+  return array
+		.map((x, i) => [x, x * i + x])
+		.sort((a, b) => a[1] - b[1])
+		.map((a) => a[0])
+}
+
+// Clever use of object for .sort() instead of a 2D array
+function sortByValueAndIndex(array) {
+  return array
+    .map((number, index) => ({
+      number,
+      product: number * (index + 1),
+    }))
+    .sort((a, b) => a.product - b.product)
+    .map((element) => element.number);
+}
+
+// clever to use string interpolation to avoid the need to use a 2D array
+function sortByValueAndIndex(array){
+  let strArr = array.map((e,i) => `${e}*${i+1}`);
+  return strArr.sort((a,b) => eval(a)-eval(b)).map(e => +e.split('*')[0]);
+}
