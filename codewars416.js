@@ -46,6 +46,10 @@ Pseudocode:
     declare an empty string called result
     grab the element at index 2, uppercase it and concat it to result
     '9'.repeat(5 minus the length of the element at index 2) and concat to result
+    grab the element at index 3 and slice the 2nd to last char
+    grab the element at index 3 and split it on '-' and declare it as a variable month
+    grab the first element from the variable month and declare it as a variable day, if the element at index 4 of data is equal to 'F' convert it to a number and add 50
+
     
 
 
@@ -55,5 +59,20 @@ Pseudocode:
 
 // My Answer
 function driver(data) {
-    // Code here
+    let result = ''
+    result += data[2].toUpperCase()
+    result += '9'.repeat(5 - data[2].length)
+    result += data[3].slice(data[3].length -2, -1)
+    let month = data[3].split('-')
+    if(data[4] === 'F'){
+        console.log('female')
+        let day = Number(month[0]) + 50
+        result += day
+    } else {
+        result += month[0]
+    }
+    return result
 }
+
+console.log(driver(["Andrew","Robert","Lee","02-September-1981","M"])) // "LEE99802"
+console.log(driver(["Johanna","","Gibbs","13-Dec-1981","F"])) // "GIBBS86213"
