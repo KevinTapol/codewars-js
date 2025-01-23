@@ -35,7 +35,13 @@ Parameters or Edge Cases:
     middle name may be an empty string
 
 Return:
-    return a string of 16 chars of uppercase letters and numbers where the first of the five chars will be the inputs last name padded with '9' if less than 5 chars, the 2nd to last digit from year of dob, DDMM for dob in digits add 5 to first digit of D and M if data is Female, the date within the month of birth meaning ?????????, the last digit from the year of birth, the first char in uppercase of the first name and the middle name (if no middle name use '9'), '9' and finally 'AA'
+    return a string of 16 chars of uppercase letters and numbers where the 
+    first of the 5 chars will be the inputs last name padded with '9' if less than 5 chars, 
+    6th char will be the 2nd to last digit from year of dob, 
+    7th and 8th chars will be DDMM for dob in digits add 5 to first digit of D and M if data is Female, 
+    the date within the month of birth meaning ?????????, 
+    the last digit from the year of birth, the first char in uppercase of the first name and the middle name (if no middle name use '9'), 
+    '9' and finally 'AA'
 
 Examples:
 ["John","James","Smith","01-Jan-2000","M"] --> "SMITH001010JJ9AA"
@@ -64,12 +70,13 @@ function driver(data) {
     result += '9'.repeat(5 - data[2].length)
     result += data[3].slice(data[3].length -2, -1)
     let month = data[3].split('-')
+    let day = Number(month[0])
     if(data[4] === 'F'){
         console.log('female')
-        let day = Number(month[0]) + 50
+        day += 50
         result += day
     } else {
-        result += month[0]
+        result += day
     }
     return result
 }
