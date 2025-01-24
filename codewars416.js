@@ -50,11 +50,13 @@ Examples:
 
 Pseudocode:
     declare an empty string called result
+    declare an object containing string months and their 3 letter short hand as keys and the values digits of the month
     grab the element at index 2, uppercase it and concat it to result
     '9'.repeat(5 minus the length of the element at index 2) and concat to result
     grab the element at index 3 and slice the 2nd to last char
     grab the element at index 3 and split it on '-' and declare it as a variable month
     grab the first element from the variable month and declare it as a variable day, if the element at index 4 of data is equal to 'F' convert it to a number and add 50
+    
 
     
 
@@ -66,20 +68,61 @@ Pseudocode:
 // My Answer
 function driver(data) {
     let result = ''
+    let months = {
+        'January': 1,
+        'Jan': 1,
+        'February': 2,
+        'Feb': 2,
+        'March': 3,
+        'Mar': 3,
+        'April': 4,
+        'Apr': 4,
+        "May": 5,
+        'June': 6,
+        'Jun': 6,
+        'July': 7,
+        'Jul': 7,
+        'August': 8,
+        'Aug': 8,
+        'September': 9,
+        'Sep': 9,
+        'October': 10,
+        'Oct': 10,
+        'November': 11,
+        'Nov': 11,
+        'December': 12,
+        'Dec': 12
+    }
+    
     result += data[2].toUpperCase()
     result += '9'.repeat(5 - data[2].length)
     result += data[3].slice(data[3].length -2, -1)
-    let month = data[3].split('-')
-    let day = Number(month[0])
-    if(data[4] === 'F'){
-        console.log('female')
-        day += 50
-        result += day
+    let date = data[3].split('-')
+   
+    let day = Number(date[0])
+    let month = months[date[1]]
+    if(month.length !=2 && data[4] === 'M'){
+        month = '0'.concat(month)
     } else {
-        result += day
+        month += 50
     }
-    return result
+    if(day.toString().length != 2 ){
+        day = '0'.concat(day)   
+    }
+    let middleName = data[1][0]
+    if(middleName === undefined){
+        middleName = '9'
+    }
+    let firstName = data[0][0]
+    let year = data[3].slice(-1)
+    result += month
+    result += day
+    result += year
+    result += firstName
+    result += middleName
+    result += '9AA'
+    return result.toUpperCase()
 }
 
-console.log(driver(["Andrew","Robert","Lee","02-September-1981","M"])) // "LEE99802"
-console.log(driver(["Johanna","","Gibbs","13-Dec-1981","F"])) // "GIBBS86213"
+// console.log(driver(["Andrew","Robert","Lee","02-September-1981","M"])) // "LEE99809021AR9AA"
+console.log(driver(["Johanna","","Gibbs","13-Dec-1981","F"])) // "GIBBS862131J99AA"
