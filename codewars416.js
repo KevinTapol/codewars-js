@@ -124,5 +124,5 @@ function driver(data) {
     return result.toUpperCase()
 }
 
-// console.log(driver(["Andrew","Robert","Lee","02-September-1981","M"])) // "LEE99809021AR9AA"
+console.log(driver(["Andrew","Robert","Lee","02-September-1981","M"])) // "LEE99809021AR9AA"
 console.log(driver(["Johanna","","Gibbs","13-Dec-1981","F"])) // "GIBBS862131J99AA"
