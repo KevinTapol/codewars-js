@@ -115,6 +115,7 @@ function driver(data) {
     }
     let firstName = data[0][0]
     let year = data[3].slice(-1)
+    
     result += month
     result += day
     result += year
