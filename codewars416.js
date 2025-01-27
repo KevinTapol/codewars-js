@@ -95,7 +95,10 @@ function driver(data) {
     }
     
     result += data[2].toUpperCase()
-    result += '9'.repeat(5 - data[2].length)
+    if(data[2].length < 5){
+        result += '9'.repeat(5 - data[2].length)
+    }
+    // result += '9'.repeat(5 - data[2].length)
     result += data[3].slice(data[3].length -2, -1)
     let date = data[3].split('-')
    
