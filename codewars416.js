@@ -130,3 +130,6 @@ function driver(data) {
 
 console.log(driver(["Andrew","Robert","Lee","02-September-1981","M"])) // "LEE99809021AR9AA"
 console.log(driver(["Johanna","","Gibbs","13-Dec-1981","F"])) // "GIBBS862131J99AA"
+console.log(driver([ 'Sam', 'Brooks', 'Yadiel', '24-May-1951', 'F' ])) // 'YADIE555241SB9AA' instead returning wrongly 'YADIEL555241SB9AA'
+// this means that for some female entries both month and day need +50 and some entries only month
+console.log(driver([ 'Sam', 'Brooks', 'Yadiel', '24-May-1951', 'F' ])) //'FAITH610216YS9AA' instead returning wrongly 'FAITH6010216YS9AA'
