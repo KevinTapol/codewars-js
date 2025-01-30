@@ -125,12 +125,12 @@ function driver(data) {
     result += firstName
     result += middleName
     result += '9AA'
-    if(data = [ 'Sam', 'Brooks', 'Yadiel', '24-May-1951', 'F' ]){
-        return 'YADIE555241SB9AA'
-    }else {
-        return result.toUpperCase()
-    }
-    
+    // if(data = [ 'Sam', 'Brooks', 'Yadiel', '24-May-1951', 'F' ]){
+    //     return 'YADIE555241SB9AA'
+    // }else {
+    //     return result.toUpperCase()
+    // }
+    return result.toUpperCase()
 }
 
 console.log(driver(["Andrew","Robert","Lee","02-September-1981","M"])) // "LEE99809021AR9AA"
@@ -140,3 +140,47 @@ console.log(driver([ 'Sam', 'Brooks', 'Yadiel', '24-May-1951', 'F' ])) // 'YADIE
 console.log(driver([ 'Sam', 'Brooks', 'Yadiel', '24-May-1951', 'F' ])) //'FAITH610216YS9AA' instead returning wrongly 'FAITH6010216YS9AA'
 
 // I might have to make test cases based on the input data of both 'F' and name to target the input data with conflicting descriptions
+
+/*
+Multiple test cases conflicting with description. Next task is to find the commonality of the conflicts and devise the missing description.
+
+[ 'Landyn', 'Maddison', 'Stevens', '23-Feb-1994', 'M' ]
+[ 'Landyn', 'Maddison', 'Stevens', '23-Feb-1994', 'M' ]
+Returned: 'STEVENS902234LM9AA' Should return: 'STEVE902234LM9AA' - Expected: 'STEVE902234LM9AA', instead got: 'STEVENS902234LM9AA'
+Log
+[ 'Crane', 'Sandoval', 'Alan', '22-Dec-1983', 'M' ]
+[ 'Crane', 'Sandoval', 'Alan', '22-Dec-1983', 'M' ]
+Returned: 'ALAN98012223CS9AA' Should return: 'ALAN9812223CS9AA' - Expected: 'ALAN9812223CS9AA', instead got: 'ALAN98012223CS9AA'
+Log
+[ 'Wilson', 'Dayton', 'Brooks', '22-May-1996', 'M' ]
+[ 'Wilson', 'Dayton', 'Brooks', '22-May-1996', 'M' ]
+Returned: 'BROOKS905226WD9AA' Should return: 'BROOK905226WD9AA' - Expected: 'BROOK905226WD9AA', instead got: 'BROOKS905226WD9AA'
+Log
+[ 'Scott', 'Faith', 'Sandoval', '16-Dec-1935', 'M' ]
+[ 'Scott', 'Faith', 'Sandoval', '16-Dec-1935', 'M' ]
+Returned: 'SANDOVAL3012165SF9AA' Should return: 'SANDO312165SF9AA' - Expected: 'SANDO312165SF9AA', instead got: 'SANDOVAL3012165SF9AA'
+Log
+[ 'Alan', 'Yadiel', 'Shepherd', '21-May-1933', 'F' ]
+[ 'Alan', 'Yadiel', 'Shepherd', '21-May-1933', 'F' ]
+Returned: 'SHEPHERD355213AY9AA' Should return: 'SHEPH355213AY9AA' - Expected: 'SHEPH355213AY9AA', instead got: 'SHEPHERD355213AY9AA'
+Log
+[ 'Sandoval', 'Luna', 'Levine', '14-Dec-1991', 'F' ]
+[ 'Sandoval', 'Luna', 'Levine', '14-Dec-1991', 'F' ]
+Returned: 'LEVINE962141SL9AA' Should return: 'LEVIN962141SL9AA' - Expected: 'LEVIN962141SL9AA', instead got: 'LEVINE962141SL9AA'
+Log
+[ 'Scott', 'Levine', 'Mireya', '14-Apr-1979', 'F' ]
+[ 'Scott', 'Levine', 'Mireya', '14-Apr-1979', 'F' ]
+Returned: 'MIREYA754149SL9AA' Should return: 'MIREY754149SL9AA' - Expected: 'MIREY754149SL9AA', instead got: 'MIREYA754149SL9AA'
+Log
+[ 'Laila', 'Eugene', 'Jovan', '15-Nov-1972', 'M' ]
+[ 'Laila', 'Eugene', 'Jovan', '15-Nov-1972', 'M' ]
+Returned: 'JOVAN7011152LE9AA' Should return: 'JOVAN711152LE9AA' - Expected: 'JOVAN711152LE9AA', instead got: 'JOVAN7011152LE9AA'
+Log
+[ 'Laila', 'Saul', 'Richmond', '13-Feb-1947', 'F' ]
+[ 'Laila', 'Saul', 'Richmond', '13-Feb-1947', 'F' ]
+Returned: 'RICHMOND452137LS9AA' Should return: 'RICHM452137LS9AA' - Expected: 'RICHM452137LS9AA', instead got: 'RICHMOND452137LS9AA'
+Log
+[ 'Kirk', 'Saul', 'Landyn', '14-Dec-1979', 'M' ]
+[ 'Kirk', 'Saul', 'Landyn', '14-Dec-1979', 'M' ]
+Returned: 'LANDYN7012149KS9AA' Should return: 'LANDY712149KS9AA' - Expected: 'LANDY712149KS9AA', instead got: 'LANDYN7012149KS9AA'
+*/
