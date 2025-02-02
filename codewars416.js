@@ -144,6 +144,10 @@ console.log(driver([ 'Sam', 'Brooks', 'Yadiel', '24-May-1951', 'F' ])) //'FAITH6
 /*
 Multiple test cases conflicting with description. Next task is to find the commonality of the conflicts and devise the missing description.
 Some examples are including 6 chars instead of 5 chars for the first input why?
+
+Found 2 input conflicting description test cases
+first input taking more than 5 chars with some inputs
+day and month for female adding either 50 or both
 [ 'Landyn', 'Maddison', 'Stevens', '23-Feb-1994', 'M' ]
 [ 'Landyn', 'Maddison', 'Stevens', '23-Feb-1994', 'M' ]
 Returned: 'STEVENS902234LM9AA' Should return: 'STEVE902234LM9AA' - Expected: 'STEVE902234LM9AA', instead got: 'STEVENS902234LM9AA'
