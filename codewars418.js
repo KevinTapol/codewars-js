@@ -44,3 +44,29 @@ function getMatrix(int) {
 } 
 
 console.log(getMatrix(2)) // [ [1,0],[0,1] ]
+
+// Best Practices
+// using Array.fill() instead of Array.from()
+function getMatrix(number) {
+    const matrix = [];
+    for (let i = 0; i < number; i++) {
+      matrix[i] = Array(number).fill(0)
+      matrix[i][i] = 1;
+    }
+    return matrix;
+} 
+
+// Most Clever
+getMatrix=n=>[...Array(n)].map((_,i)=>[...Array(n)].map((_,j)=>+(i==j)))
+
+// nested for loop
+function getMatrix(size) {
+    var matrix = [];
+    for(var i = 0; i < size; i++) {
+      matrix[i] = [];
+      for(var j = 0; j < size; j++) {
+        matrix[i][j] = (i == j ? 1 : 0);
+      }
+    }
+    return matrix;
+}
