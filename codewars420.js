@@ -49,3 +49,46 @@ function bald(x){
     return result
 }
 console.log(bald('/---------')) //
+
+// Best Practices
+// switch case with regex
+function bald(x) {
+    const count = x.split('/').length - 1;
+    let look;
+    switch (count) {
+      case 0: look = 'Clean'; break;
+      case 1: look = 'Unicorn'; break;
+      case 2: look = 'Homer'; break;
+      case 3:
+      case 4:
+      case 5: look = 'Careless'; break;
+      default: look = 'Hobo';
+    }
+    return [x.replace(/\//g, '-'), look + '!'];
+}
+
+// Most Clever using array methods and a declared array
+const bald=x=>[(y=x.split("/")).join("-"),["Clean!","Unicorn!","Homer!","Careless!","Careless!","Careless!"][y.length-1]||"Hobo!"]
+
+// Using .repeat() instead of array methods to create the 1st element in the returned array
+const bald = function(x){
+    return ['-'.repeat(x.length), 
+            {0:'Clean!', 1:'Unicorn!',2:'Homer!', 3:'Careless!', 
+             4:'Careless!', 5:'Careless!'}[x.replace(/-/g, '').length] || 'Hobo!']
+  }
+
+// clean arrow fn using greater than conditionals
+const bald = (x, hair = x.replace(/-/g, '').length ) =>
+    [ x.replace(/\//g, '-'), 
+     hair < 1 ? "Clean!": 
+     hair < 2 ? "Unicorn!" : 
+     hair < 3 ? "Homer!" : 
+     hair < 6 ? "Careless!" : "Hobo!" ]
+
+// clever to use .match() with regex to create an array
+function bald(x){
+    let hairStr = ['Clean!', 'Unicorn!', 'Homer!', 'Careless!', 'Careless!', 'Careless!', 'Hobo!']  
+    let hairCount = (x.match(/\//g) || []).length
+    
+    return [x.replace(/\//g, '-'), hairCount > 5 ? hairStr[6] : hairStr[hairCount]]
+}
