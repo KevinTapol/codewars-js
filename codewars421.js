@@ -21,6 +21,7 @@ Be careful with long sequences. They are just arrays, every element is created w
 Parameters or Edge Cases:
 
 Return:
+    return an array with the length of the first input and with elements directed by the 2nd input whether arrow fn or static input
 
 Examples:
     3, 4), [4, 4, 4], "number filled");
@@ -29,10 +30,30 @@ Examples:
     5, (x, idx) => idx%2), [0, 1, 0, 1, 0], "have to filled by two parram function pattern");
 
 Pseudocode:
+    generate an array result with the length of the 1st input
+    if the second input does not contain => then fill the elements with the 2nd input
+    else grab the index and modify it based on the arrow fn to fill the elements
+    return the array result
 
 */
 
 // My Answer
 function sequence(n, pattern) {
-    // new n-size Array filled by pattern
+    if(!pattern.toString().split(' ').includes('=>')){
+        return Array.from({length:n}, e=> e = pattern)
+    } else{
+        return Array.from({length:n}, pattern)
+    }
 }
+
+
+function sequence(n, pattern) {
+    if(pattern.toString().split(' ').includes('=>')){
+        return Array.from({length:n}, pattern)
+    } else{
+        return Array.from({length:n}, e=> e = pattern)
+    }
+}
+
+console.log(sequence(3, 4)) // [4, 4, 4]
+console.log(sequence(5, (x, idx) => idx%2)) // [4, 4, 4]
