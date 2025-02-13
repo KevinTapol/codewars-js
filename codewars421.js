@@ -39,6 +39,17 @@ Pseudocode:
 
 // My Answer
 function sequence(n, pattern) {
+    console.log(pattern)
+    if(!pattern){
+      return []
+    }
+    if(!pattern.toString().split(' ').includes('=>')){
+        return Array.from({length:n}, e=> e = pattern)
+    } else{
+        return Array.from({length:n}, pattern)
+    }
+}
+function sequence(n, pattern) {
     if(!pattern.toString().split(' ').includes('=>')){
         return Array.from({length:n}, e=> e = pattern)
     } else{
