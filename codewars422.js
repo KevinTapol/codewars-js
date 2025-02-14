@@ -31,16 +31,15 @@ Examples:
 
 Pseudocode:
     sort the input array in ascending order declared as asc
-    reverse asc declared as des and remove the first element
+    create a copy of asc named dec using .slice() to remove the last element and reverse the array
     concat des to asc and return it
 
 */
 
-// My Answer
+// My Answer using .slice() to maintain input array integrity
 function mirror(data) {
     let asc = data.slice().sort((a, b) => a - b)
-    let dec = asc.slice().reverse()
-    // dec.shift()
-    return asc
+    let dec = asc.slice(0,asc.length -1).reverse()
+    return asc.concat(dec)
 }
 console.log(mirror([2, 1])) // [1, 2, 1]
