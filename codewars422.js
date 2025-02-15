@@ -38,8 +38,42 @@ Pseudocode:
 
 // My Answer using .slice() to maintain input array integrity
 function mirror(data) {
-    let asc = data.slice().sort((a, b) => a - b)
-    let dec = asc.slice(0,asc.length -1).reverse()
+    const asc = data.slice().sort((a, b) => a - b)
+    const dec = asc.slice(0,asc.length -1).reverse()
     return asc.concat(dec)
 }
+
+// My Answer refactored
+function mirror(data) {
+    const asc = data.slice().sort((a, b) => a - b)
+    return asc.concat(asc.slice(0,asc.length -1).reverse())
+}
+
+// My Answer refactored one liner arrow fn with default array using .slice() to maintain array integrity
+const mirror = (data, asc = data.slice().sort((a, b) => a - b)) => asc.concat(asc.slice(0,asc.length -1).reverse())
+
 console.log(mirror([2, 1])) // [1, 2, 1]
+
+// Best Practices
+// Similar to my answer but instead of using .concat() they use array brackets and a spread operator
+function mirror(data) {
+    const sort = data.slice().sort((a, b) => a - b);
+    return [...sort, ...sort.reverse().slice(1)];
+}
+
+// Clever using a .pop() instead of specifying .slice() start and stop
+function mirror(data) {
+    var result = [].concat(data).sort((a, b) => a - b);
+    result.pop();
+    return result.concat([].concat(data).sort((a, b) => b - a));
+}
+
+// using Array.from() to create a new array
+const mirror = data => {
+    const sorted = [...data].sort((a, b) => a - b)
+    const len = data.length
+    const newLen = len * 2 - 1
+    const res = Array.from({ length: newLen }, (_, i) => sorted[i] ?? sorted[len - (i - len) - 2])
+  
+    return res
+}
