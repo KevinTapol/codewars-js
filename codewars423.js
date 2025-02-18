@@ -49,4 +49,14 @@ var getQuote = function(quotes, hero){
     result += quotes[index]
     return result
 }
+
+// My Answer refactored
+function getQuote(quotes, hero){
+    let result = ''
+    hero[0] === 'B' ? result += 'Batman: ' : hero[0] === 'R' ? result += 'Robin: ' : result += 'Joker: '
+
+    let index = hero.toLowerCase().replace(/[a-z]/gi, '')
+    result += quotes[index]
+    return result
+}
 console.log(getQuote(["WHERE IS SHE?!", "Holy haberdashery, Batman!", "Let's put a smile on that faaaceee!"], "Rob1n")) // 
