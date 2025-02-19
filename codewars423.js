@@ -50,7 +50,7 @@ var getQuote = function(quotes, hero){
     return result
 }
 
-// My Answer refactored
+// My Answer conditional refactored to ternary
 function getQuote(quotes, hero){
     let result = ''
     hero[0] === 'B' ? result += 'Batman: ' : hero[0] === 'R' ? result += 'Robin: ' : result += 'Joker: '
@@ -59,4 +59,21 @@ function getQuote(quotes, hero){
     result += quotes[index]
     return result
 }
+
+// My answer refactored default empty string, ternary return
+function getQuote(quotes, hero, result = ''){
+    hero[0] === 'B' ? result += 'Batman: ' : hero[0] === 'R' ? result += 'Robin: ' : result += 'Joker: '
+    return result += quotes[hero.toLowerCase().replace(/[a-z]/gi, '')]
+}
+
 console.log(getQuote(["WHERE IS SHE?!", "Holy haberdashery, Batman!", "Let's put a smile on that faaaceee!"], "Rob1n")) // 
+
+// Best Practices and Most Clever
+// using an object to figure out the hero just like my answer but then using .match() with regex instead of .replace()
+function getQuote(quotes, hero){
+    return {R: 'Robin', J: 'Joker', B: 'Batman'}[hero[0]] + ': ' + quotes[hero.match(/\d+/)[0]];
+}
+
+// One liner arrow fn with string interpolation
+const getQuote = (quotes, hero) =>
+    `${{B: `Batman`, R: `Robin`, J: `Joker`}[hero[0]]}: ${quotes[hero.match(/\d/)]}`;
