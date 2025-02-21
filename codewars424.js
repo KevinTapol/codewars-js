@@ -94,4 +94,12 @@ function countWins(winnerList, country) {
     } return count
 }
 
-console.log(countWins(winnerList1, 'Spain')) //
+// My Answer using .filter()
+function countWins(winnerList, country) {
+    return winnerList.filter(e => e.country === country).length
+}
+
+// My Answer one liner arrow fn
+const countWins = (winnerList, country) => winnerList.filter(e => e.country === country).length
+
+console.log(countWins(winnerList1, 'Spain')) // 9
