@@ -99,7 +99,12 @@ function countWins(winnerList, country) {
     return winnerList.filter(e => e.country === country).length
 }
 
-// My Answer one liner arrow fn
+// My Answer one liner arrow fn Best Practices and Most Clever
 const countWins = (winnerList, country) => winnerList.filter(e => e.country === country).length
 
 console.log(countWins(winnerList1, 'Spain')) // 9
+
+// .reduce() to return an integer count with a default 0
+function countWins(winnerList, country) {
+    return winnerList.reduce((a,b) => a + (b['country'] == country ? 1 : 0), 0);
+  }
