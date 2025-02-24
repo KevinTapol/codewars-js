@@ -63,8 +63,11 @@ function pairZeros(arr) {
             result.push(e)
         }if(e === 0){
             count += 1
-            if(e === 0 && count != 2){
+            if(count != 2){
                 result.push(e)
+            }
+            if(count === 2 ){
+              count -= 1
             }
         }
     } return result
