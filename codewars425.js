@@ -106,4 +106,11 @@ function pairZeros(arr) {
     } return result
 }
 
+// .reduce() 
+function pairZeros(arr) {
+    let count = 0
+    let answer = arr.reduce((acc, c) => c != 0 ? c : count += 1, count === 2 ? count = 0 : c, [])
+    return answer
+}
+
 console.log(pairZeros([0,0])) // [0]
