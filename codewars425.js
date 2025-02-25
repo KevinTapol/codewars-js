@@ -54,21 +54,54 @@ Pseudocode:
 
 */
 
-// My Answer
+// My Answer Brute force for loop working
 function pairZeros(arr) {
     let count = 0
     let result = []
     for(let e of arr){
         if(e != 0){
             result.push(e)
-        }if(e === 0){
+        } else {
             count += 1
             if(count != 2){
                 result.push(e)
             }
             if(count === 2 ){
-              count -= 1
+              count = 0
             }
+        }
+    } return result
+}
+
+// My answer brute force for loop refactored conditional logic
+function pairZeros(arr) {
+    let count = 0
+    let result = []
+    for(let e of arr){
+        if(e != 0){
+            result.push(e)
+        } else {
+            count += 1
+            if(count === 2 ){
+              count = 0
+            } else {
+              result.push(e)
+            }
+
+        }
+    } return result
+}
+
+// My Answer refactored but how to do a ternary with multiple steps again for the else statement?
+function pairZeros(arr) {
+    let count = 0
+    let result = []
+    for(let e of arr){
+        if(e != 0){
+            result.push(e)
+        } else {
+            count += 1
+            count === 2 ? count = 0 : result.push(e)
         }
     } return result
 }
