@@ -106,11 +106,53 @@ function pairZeros(arr) {
     } return result
 }
 
-// .reduce() 
+// My Answer refactoring conditional into a ternary using (logic, logic)
 function pairZeros(arr) {
     let count = 0
-    let answer = arr.reduce((acc, c) => c != 0 ? c : count += 1, count === 2 ? count = 0 : c, [])
-    return answer
+    let result = []
+    for(let e of arr){
+        e !== 0 ? result.push(e) : (count += 1, count === 2 ? count = 0 : result.push(e))
+    } return result
 }
+
+// My Answer using .map() for an iterator instead of a for loop
+function pairZeros(arr) {
+    let count = 0
+    let result = []
+    let answer = arr.map(e => e !== 0 ? result.push(e) : (count += 1, count === 2 ? count = 0 : result.push(e)))
+    return result
+}
+
+// My Answer using .reduce()
+function pairZeros(arr) {
+    let count = 0
+    return arr.reduce((acc, c) => {
+        if (c !== 0) {
+            acc.push(c)
+        } else if (count === 0) {
+            acc.push(c)
+            count = 1
+        } else {
+            count = 0
+        }
+        return acc
+    }, [])
+}
+
+// My Answer using .reduce() refactored to ternary and count set to default parameter
+function pairZeros(arr, count = 0) {
+    return arr.reduce((acc, c) => {
+        c !== 0 ? acc.push(c) : count === 0 ? (acc.push(c), count = 1) : count = 0
+        return acc
+    }, [])
+}
+
+
+// My Answer one liner arrow fn using .reduce()
+const pairZeros = (arr, count = 0) => arr.reduce((acc, c) => {
+        c !== 0 ? acc.push(c) : count === 0 ? (acc.push(c), count = 1) : count = 0
+        return acc
+    }, [])
+
 
 console.log(pairZeros([0,0])) // [0]
