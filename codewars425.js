@@ -156,3 +156,23 @@ const pairZeros = (arr, count = 0) => arr.reduce((acc, c) => {
 
 
 console.log(pairZeros([0,0])) // [0]
+
+// Best Practices and Most Clever
+// using .filter()
+function pairZeros(arr) {
+    var seenZero = 0;
+    return arr.filter(function(num){
+      return num != 0 || seenZero++ % 2 == 0;
+    });
+}
+
+// Most Clever turned into a one liner
+var pairZeros = (a, f) => a.filter(n => n || (f = !f));
+
+// using regex
+var pairZeros = arr => 
+    arr
+      .join('')
+      .replace(/0([^0]*)0/g, '0$1')
+      .split('')
+      .map(Number)
